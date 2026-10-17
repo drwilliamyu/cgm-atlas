@@ -115,10 +115,36 @@ function featureList(d) {
   );
 }
 
+/* ---------- Group dividers ----------
+   Groups, in order: has data · no published value for the sorted metric ·
+   no record in this jurisdiction (only when included). */
+function groupOf(x, state) {
+  if (x.dim) return 'dim';
+  if (state.sort !== 'name' && x.nodata) return 'nodata';
+  return 'data';
+}
+function groupLabel(g, x) {
+  if (g === 'dim') return t('group.dim');
+  if (g === 'nodata') return t(x.metric === 'mard' ? 'group.nodata.mard' : 'group.nodata.p2020');
+  return null;
+}
+
 /* ---------- Cards (phones) ---------- */
 export function renderCards(list, state) {
   const ul = document.getElementById('cards');
-  ul.replaceChildren(...list.map(({ d, dim }) => {
+  const items = [];
+  let prevG = 'data';
+  for (const x of list) {
+    const g = groupOf(x, state);
+    if (g !== prevG && groupLabel(g, x)) items.push(h('li', { class: `group-label group-${g}`, role: 'presentation' }, groupLabel(g, x)));
+    prevG = g;
+    items.push(cardFor(x, state));
+  }
+  ul.replaceChildren(...items);
+}
+
+function cardFor({ d, dim, nodata }, state) {
+  {
     const hl = d.headline;
     const st = statusFor(d, state.jur);
     const showFeatures = state.view === 'features';
@@ -155,14 +181,14 @@ export function renderCards(list, state) {
       h('div', { class: 'ev-group' }, h('h3', {}, t('evidence.features')), featureList(d))
     );
 
-    return h('li', { class: `card${dim ? ' dim' : ''}`, id: `dev-${d.id}` },
+    return h('li', { class: `card${dim ? ' dim' : ''}${nodata ? ' nodata' : ''}`, id: `dev-${d.id}` },
       h('div', { class: 'card-head' },
         h('div', {},
           h('p', { class: 'card-name' }, d.name, hl?.range_limited ? '*' : ''),
           h('p', { class: 'card-maker' }, link(d.maker.url, d.maker.name))),
         metric),
       meta, badges, details);
-  }));
+  }
 }
 
 /* ---------- Table (all widths; default layout) ----------
@@ -192,8 +218,8 @@ const dash = () => h('span', { class: 'missing' }, '—');
 function cellFor(key, d, st) {
   const hl = d.headline, f = d.features;
   switch (key) {
-    case 'mard': return h('td', { class: 'num' }, h('span', { class: 'big' }, hl?.mard != null ? fmt(hl.mard) : '—'), hl?.range_limited ? '*' : '');
-    case 'p2020': return h('td', { class: 'num' }, hl?.p2020 != null ? fmt(hl.p2020) : '—');
+    case 'mard': return h('td', { class: 'num' }, hl?.mard != null ? [h('span', { class: 'big' }, fmt(hl.mard)), hl.range_limited ? '*' : ''] : h('span', { class: 'nd' }, t('nd')));
+    case 'p2020': return h('td', { class: 'num' }, hl?.p2020 != null ? fmt(hl.p2020) : h('span', { class: 'nd' }, t('nd')));
     case 'status': return h('td', {}, badge(st.cls, st.text));
     case 'ref': return h('td', {}, hl ? clip(hl.study.reference_method) : dash());
     case 'src': return h('td', {}, hl
@@ -226,7 +252,15 @@ export function renderTable(list, state, onSort) {
 
   const span = 1 + cols.length;
   const rows = [];
-  for (const { d, dim } of list) {
+  let prevG = 'data';
+  for (const x of list) {
+    const { d, dim, nodata } = x;
+    const g = groupOf(x, state);
+    if (g !== prevG && groupLabel(g, x)) {
+      rows.push(h('tr', { class: `group-row group-${g}` },
+        h('th', { scope: 'rowgroup', colspan: span }, h('span', { class: 'group-pin' }, groupLabel(g, x)))));
+    }
+    prevG = g;
     const hl = d.headline;
     const st = statusFor(d, state.jur);
     const evId = `ev-${d.id}`;
@@ -247,7 +281,7 @@ export function renderTable(list, state, onSort) {
       toggle.setAttribute('aria-expanded', String(!open));
       evRow.hidden = open;
     });
-    rows.push(h('tr', { class: dim ? 'dim' : null },
+    rows.push(h('tr', { class: [dim ? 'dim' : '', nodata && state.sort !== 'name' ? 'nodata' : ''].join(' ').trim() || null },
       h('th', { scope: 'row', class: 'col-dev' }, toggle),
       cols.map(c => cellFor(c.key, d, st))
     ), evRow);

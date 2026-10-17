@@ -83,5 +83,9 @@
   "nav.next": "Next columns",
   "nav.hint": "Swipe or tap arrows for more columns",
   "ctl.patient": "Patient handout",
-  "declined.patient": "Read patient information about CGMs"
+  "declined.patient": "Read patient information about CGMs",
+  "group.nodata.p2020": "No published %20/20",
+  "group.nodata.mard": "No published MARD",
+  "group.dim": "No record in this jurisdiction",
+  "nd": "Not published"
 }

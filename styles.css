@@ -362,3 +362,25 @@ details.evidence[open] > summary::after { content: "−"; }
 .panel summary::-webkit-details-marker { display: none; }
 .panel summary::after { content: "+"; margin-left: auto; font-size: 1.3rem; color: var(--brand); }
 .panel details[open] summary::after { content: "−"; }
+
+/* No-data and out-of-jurisdiction groups */
+.table-wrap tr.group-row th {
+  position: static; padding: 0; background: var(--amber-soft); color: var(--amber);
+  border-top: 2px solid var(--amber); border-bottom: 1px solid var(--line);
+  font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em;
+}
+.table-wrap tr.group-row.group-dim th { background: var(--bg); color: var(--ink-2); border-top-color: var(--line); }
+.group-pin { position: sticky; left: 0; display: inline-block; padding: .45rem .7rem; }
+.table-wrap tr.nodata > td,
+.table-wrap tr.nodata > th {
+  background-image: repeating-linear-gradient(135deg, transparent 0 6px, rgba(138,90,0,.07) 6px 12px);
+}
+.table-wrap tr.nodata > th.col-dev { background-color: var(--surface); }
+.nd { font-size: .78rem; font-style: italic; color: var(--amber); font-weight: 600; }
+.group-label {
+  list-style: none; margin-top: .5rem; padding: .45rem .75rem; border-radius: 8px;
+  background: var(--amber-soft); color: var(--amber); border-left: 4px solid var(--amber);
+  font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em;
+}
+.group-label.group-dim { background: var(--bg); color: var(--ink-2); border-left-color: var(--line); }
+.card.nodata { border-style: dashed; border-color: var(--amber); }

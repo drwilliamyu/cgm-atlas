@@ -10,7 +10,7 @@ const PREFS = 'cgmatlas.prefs';
 const EU = ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE'];
 
 let model;
-const state = { jur: 'INT', units: 'mg/dL', lang: 'en', view: 'accuracy', sort: 'mard', include: false, layout: 'table' };
+const state = { jur: 'INT', units: 'mg/dL', lang: 'en', view: 'accuracy', sort: 'p2020', include: false, layout: 'table' };
 
 function detectJur() {
   for (const l of navigator.languages || [navigator.language || '']) {
@@ -32,7 +32,7 @@ function readState() {
   state.jur = [p.get('j'), saved.jur, detectJur()].find(v => jurIds.includes(v)) || 'INT';
   state.lang = p.get('lang') || saved.lang || detectLang();
   state.view = ['accuracy', 'features'].includes(p.get('view')) ? p.get('view') : (saved.view || 'accuracy');
-  state.sort = ['mard', 'p2020', 'name'].includes(p.get('sort')) ? p.get('sort') : (saved.sort || 'mard');
+  state.sort = ['mard', 'p2020', 'name'].includes(p.get('sort')) ? p.get('sort') : (saved.sort || 'p2020');
   state.include = p.get('all') === '1' || !!saved.include;
   state.layout = ['table', 'cards'].includes(p.get('layout')) ? p.get('layout') : (saved.layout || 'table');
   const u = p.get('units') || saved.units;
@@ -49,7 +49,7 @@ function writeState() {
   if (state.lang !== 'en') p.set('lang', state.lang);
   p.set('units', state.units);
   if (state.view !== 'accuracy') p.set('view', state.view);
-  if (state.sort !== 'mard') p.set('sort', state.sort);
+  if (state.sort !== 'p2020') p.set('sort', state.sort);
   if (state.include) p.set('all', '1');
   if (state.layout !== 'table') p.set('layout', state.layout);
   history.replaceState(null, '', `${location.pathname}?${p}`);
@@ -75,6 +75,9 @@ function visibleDevices() {
     if (state.sort === 'p2020') return nullsLast(x.d.headline?.p2020, y.d.headline?.p2020, -1) || x.d.name.localeCompare(y.d.name);
     return nullsLast(x.d.headline?.mard, y.d.headline?.mard, 1) || x.d.name.localeCompare(y.d.name);
   });
+  // Mark devices with no published value for the sorted metric (or %20/20 when sorting by name).
+  const metric = state.sort === 'mard' ? 'mard' : 'p2020';
+  list.forEach(x => { x.nodata = x.d.headline?.[metric] == null; x.metric = metric; });
   return list;
 }
 

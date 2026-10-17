@@ -70,5 +70,9 @@
   "nav.prev": "Vorherige Spalten",
   "nav.next": "Nächste Spalten",
   "nav.hint": "Wischen oder Pfeile für mehr Spalten",
-  "ctl.patient": "Patienteninfo"
+  "ctl.patient": "Patienteninfo",
+  "group.nodata.p2020": "Kein veröffentlichter %20/20-Wert",
+  "group.nodata.mard": "Kein veröffentlichter MARD-Wert",
+  "group.dim": "Kein Eintrag in diesem Rechtsraum",
+  "nd": "Nicht veröffentlicht"
 }

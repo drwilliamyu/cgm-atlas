@@ -70,5 +70,9 @@
   "nav.prev": "上一列",
   "nav.next": "下一列",
   "nav.hint": "滑动或点击箭头查看更多列",
-  "ctl.patient": "患者资料"
+  "ctl.patient": "患者资料",
+  "group.nodata.p2020": "无已发表的 %20/20",
+  "group.nodata.mard": "无已发表的 MARD",
+  "group.dim": "此辖区无记录",
+  "nd": "未发表"
 }

@@ -70,5 +70,9 @@
   "nav.prev": "Colonnes précédentes",
   "nav.next": "Colonnes suivantes",
   "nav.hint": "Balayez ou touchez les flèches pour plus de colonnes",
-  "ctl.patient": "Fiche patient"
+  "ctl.patient": "Fiche patient",
+  "group.nodata.p2020": "Aucun %20/20 publié",
+  "group.nodata.mard": "Aucun MARD publié",
+  "group.dim": "Aucun enregistrement dans cette juridiction",
+  "nd": "Non publié"
 }
