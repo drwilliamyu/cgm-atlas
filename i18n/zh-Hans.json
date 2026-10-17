@@ -63,5 +63,11 @@
   "footer.data": "数据文件",
   "translated.note": "界面已翻译；数据和引用为英文。",
   "def.2020.mg": "%20/20：参比值低于 100 mg/dL 时误差在 ±20 mg/dL 以内、或参比值 ≥100 mg/dL 时误差在 ±20% 以内的读数比例。",
-  "def.2020.mmol": "%20/20：参比值低于 5.6 mmol/L 时误差在 ±1.1 mmol/L 以内、或参比值 ≥5.6 mmol/L 时误差在 ±20% 以内的读数比例。"
+  "def.2020.mmol": "%20/20：参比值低于 5.6 mmol/L 时误差在 ±1.1 mmol/L 以内、或参比值 ≥5.6 mmol/L 时误差在 ±20% 以内的读数比例。",
+  "ctl.layout": "布局",
+  "ctl.layout.table": "表格",
+  "ctl.layout.cards": "卡片",
+  "nav.prev": "上一列",
+  "nav.next": "下一列",
+  "nav.hint": "滑动或点击箭头查看更多列"
 }

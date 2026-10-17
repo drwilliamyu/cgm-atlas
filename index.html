@@ -62,6 +62,11 @@
     <div class="sheet" id="sheet">
       <div class="sheet-body">
         <fieldset class="seg">
+          <legend data-i18n="ctl.layout">Layout</legend>
+          <label><input type="radio" name="layout" value="table"><span data-i18n="ctl.layout.table">Table</span></label>
+          <label><input type="radio" name="layout" value="cards"><span data-i18n="ctl.layout.cards">Cards</span></label>
+        </fieldset>
+        <fieldset class="seg">
           <legend data-i18n="ctl.view">View</legend>
           <label><input type="radio" name="view" value="accuracy"><span data-i18n="ctl.view.accuracy">Accuracy</span></label>
           <label><input type="radio" name="view" value="features"><span data-i18n="ctl.view.features">Features</span></label>
@@ -83,9 +88,14 @@
     <p class="note" id="mard-note" data-i18n="mard.note"></p>
     <p class="note" id="def-2020"></p>
 
-    <ul class="cards" id="cards"></ul>
+    <ul class="cards" id="cards" hidden></ul>
 
-    <div class="table-wrap" id="table-wrap">
+    <div class="table-nav" id="table-nav" hidden>
+      <button type="button" class="btn btn-ghost nav-btn" id="col-prev" aria-controls="table-wrap"><span aria-hidden="true">‹</span><span class="sr-only" data-i18n="nav.prev">Previous columns</span></button>
+      <span class="nav-hint" data-i18n="nav.hint">Swipe or tap to see more columns</span>
+      <button type="button" class="btn btn-ghost nav-btn" id="col-next" aria-controls="table-wrap"><span aria-hidden="true">›</span><span class="sr-only" data-i18n="nav.next">Next columns</span></button>
+    </div>
+    <div class="table-wrap" id="table-wrap" tabindex="0" role="region" aria-labelledby="table-caption">
       <table id="table">
         <caption class="sr-only" id="table-caption"></caption>
         <thead id="thead"></thead>

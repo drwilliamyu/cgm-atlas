@@ -72,7 +72,7 @@ p { margin: 0 0 .75rem; }
 
 /* ---------- Top bar (sticky) ---------- */
 .topbar {
-  position: sticky; top: 0; z-index: 20;
+  position: relative; z-index: 20;
   background: var(--surface);
   border-bottom: 1px solid var(--line);
   padding: .5rem 1rem .25rem;
@@ -167,6 +167,7 @@ main:focus { outline: none; }
 .note { font-size: .85rem; color: var(--ink-2); }
 
 /* ---------- Cards (phones) ---------- */
+.cards[hidden] { display: none; }
 .cards { list-style: none; margin: 0 0 1.5rem; padding: 0; display: grid; gap: .75rem; }
 .card {
   background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
@@ -215,7 +216,65 @@ details.evidence[open] > summary::after { content: "−"; }
 .missing { color: var(--ink-2); font-style: italic; }
 
 /* ---------- Table (hidden on phones) ---------- */
-.table-wrap { display: none; }
+
+/* ---------- Table (all widths, default) ----------
+   One line per row. Device column and header row stay fixed;
+   other columns scroll sideways inside the wrapper. */
+.table-nav { display: flex; align-items: center; gap: .5rem; margin: 0 0 .4rem; }
+.table-nav[hidden] { display: none; }
+.nav-btn { width: var(--tap); padding: 0; font-size: 1.5rem; line-height: 1; }
+.nav-btn:disabled { opacity: .3; cursor: default; }
+.nav-hint { flex: 1; text-align: center; font-size: .78rem; color: var(--ink-2); }
+
+.table-wrap {
+  overflow: auto; -webkit-overflow-scrolling: touch;
+  max-height: 70vh; max-height: 70dvh;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  margin-bottom: 1.5rem; overscroll-behavior-x: contain;
+}
+.table-wrap[hidden] { display: none; }
+.table-wrap table { border-collapse: separate; border-spacing: 0; width: max-content; min-width: 100%; font-size: .9rem; }
+.table-wrap th, .table-wrap td {
+  padding: .55rem .7rem; text-align: left; vertical-align: middle;
+  border-bottom: 1px solid var(--line); white-space: nowrap;
+}
+.table-wrap thead th {
+  position: sticky; top: 0; z-index: 2; background: var(--surface);
+  font-size: .78rem; color: var(--ink-2); box-shadow: inset 0 -1px 0 var(--line);
+}
+.table-wrap thead th.num, .table-wrap td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.table-wrap thead th button { all: unset; cursor: pointer; display: inline-flex; gap: .2rem; align-items: center; min-height: 32px; }
+.table-wrap thead th button:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+/* Fixed device column */
+.table-wrap .col-dev {
+  position: sticky; left: 0; z-index: 1; background: var(--surface);
+  width: 9.5rem; min-width: 9.5rem; max-width: 9.5rem;
+  border-right: 1px solid var(--line);
+}
+.table-wrap thead .col-dev { z-index: 3; }
+.table-wrap.scrolled .col-dev { box-shadow: 4px 0 6px -4px rgba(0,0,0,.25); }
+.dev-toggle {
+  all: unset; box-sizing: border-box; cursor: pointer; display: flex; align-items: center; gap: .3rem;
+  width: 100%; min-height: 36px; font-weight: 600; color: var(--ink);
+}
+.dev-toggle:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.dev-toggle .chev { color: var(--brand); font-size: 1.2rem; line-height: 1; transition: transform .15s; flex: none; }
+.dev-toggle[aria-expanded="true"] .chev { transform: rotate(90deg); }
+@media (prefers-reduced-motion: reduce) { .dev-toggle .chev { transition: none; } }
+.clip { display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; vertical-align: bottom; }
+.table-wrap td .clip { max-width: 11rem; }
+.table-wrap td.num .big { font-size: 1.05rem; font-weight: 700; }
+.table-wrap tr.dim > td, .table-wrap tr.dim > th .dev-toggle { opacity: .6; }
+
+/* Evidence row: wraps normally and stays pinned to the visible width */
+.table-wrap tr.ev-row td { background: var(--bg); padding: 0; white-space: normal; }
+.ev-pin {
+  position: sticky; left: 0; box-sizing: border-box;
+  width: calc(100vw - 2rem - 2px); max-width: 70rem; padding: .75rem 1rem 1rem;
+}
+.ev-title { font-weight: 700; margin-bottom: .4rem; }
+.ev-cols { display: grid; gap: .25rem; }
 
 /* ---------- Blocks ---------- */
 .block { margin: 2rem 0; }
@@ -264,7 +323,7 @@ details.evidence[open] > summary::after { content: "−"; }
    Tablet and up: 768 px
    ========================================================= */
 @media (min-width: 48em) {
-  .topbar { padding: .6rem 1.5rem .4rem; }
+  .topbar { padding: .6rem 1.5rem .4rem; position: sticky; top: 0; }
   .topbar-row.controls { justify-content: flex-start; }
   .field.grow { flex: 0 1 18rem; }
   main { padding: 1.25rem 1.5rem; }
@@ -280,27 +339,11 @@ details.evidence[open] > summary::after { content: "−"; }
   .sheet-body { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; align-items: flex-end; max-width: none; margin: 0; }
   .sheet-body .field { width: 16rem; }
 
-  .cards { display: none; }
-  .table-wrap {
-    display: block; overflow: auto; max-height: 75vh;
-    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
-    margin-bottom: 1.5rem;
-  }
-  table { border-collapse: separate; border-spacing: 0; width: 100%; font-size: .92rem; }
-  th, td { padding: .6rem .75rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
-  thead th {
-    position: sticky; top: 0; z-index: 2; background: var(--surface);
-    font-size: .8rem; color: var(--ink-2); white-space: nowrap;
-  }
-  thead th button { all: unset; cursor: pointer; display: inline-flex; gap: .25rem; align-items: center; }
-  thead th button:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
-  tbody th { position: sticky; left: 0; background: var(--surface); z-index: 1; font-weight: 600; min-width: 12rem; }
-  td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
-  td.num .big { font-size: 1.1rem; font-weight: 700; }
-  tr.dim > * { opacity: .6; }
-  tr.ev-row td { background: var(--bg); padding: .75rem 1rem 1rem; }
-  .ev-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-  .row-toggle { min-height: 36px; padding: 0 .7rem; font-size: .85rem; }
+  .table-wrap .col-dev { width: 14rem; min-width: 14rem; max-width: 14rem; }
+  .table-wrap td .clip { max-width: 16rem; }
+  .ev-pin { width: calc(100vw - 3rem - 2px); }
+  .ev-cols { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .nav-hint { visibility: hidden; }
   .std { grid-template-columns: repeat(2, 1fr); }
 
   .gate { width: min(36rem, 92vw); height: auto; max-height: 90vh; margin: auto; border-radius: 16px; }

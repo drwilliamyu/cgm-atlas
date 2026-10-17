@@ -63,5 +63,11 @@
   "footer.data": "Fichiers de données",
   "translated.note": "Interface traduite ; les données et citations sont en anglais.",
   "def.2020.mg": "%20/20 : part des valeurs à ±20 mg/dL de la référence sous 100 mg/dL, ou à ±20 % à partir de 100 mg/dL.",
-  "def.2020.mmol": "%20/20 : part des valeurs à ±1,1 mmol/L de la référence sous 5,6 mmol/L, ou à ±20 % à partir de 5,6 mmol/L."
+  "def.2020.mmol": "%20/20 : part des valeurs à ±1,1 mmol/L de la référence sous 5,6 mmol/L, ou à ±20 % à partir de 5,6 mmol/L.",
+  "ctl.layout": "Affichage",
+  "ctl.layout.table": "Tableau",
+  "ctl.layout.cards": "Fiches",
+  "nav.prev": "Colonnes précédentes",
+  "nav.next": "Colonnes suivantes",
+  "nav.hint": "Balayez ou touchez les flèches pour plus de colonnes"
 }

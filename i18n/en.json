@@ -38,7 +38,7 @@
   "col.aid": "AID partners",
   "def.2020.mg": "%20/20: share of readings within ±20 mg/dL of the reference below 100 mg/dL, or within ±20% at or above 100 mg/dL.",
   "def.2020.mmol": "%20/20: share of readings within ±1.1 mmol/L of the reference below 5.6 mmol/L, or within ±20% at or above 5.6 mmol/L.",
-  "mard.note":"MARD values come from studies with different designs and reference methods. They are not directly comparable across devices.",
+  "mard.note": "MARD values come from studies with different designs and reference methods. They are not directly comparable across devices.",
   "badge.manufacturer": "Manufacturer-funded",
   "badge.independent": "Independent",
   "badge.competitor": "Competitor-funded",
@@ -75,5 +75,11 @@
   "gate.terms": "Read the terms",
   "declined.title": "This site is for health professionals",
   "declined.body": "For information about glucose monitoring, talk to your diabetes team or visit these resources:",
-  "declined.back": "I am a health professional"
+  "declined.back": "I am a health professional",
+  "ctl.layout": "Layout",
+  "ctl.layout.table": "Table",
+  "ctl.layout.cards": "Cards",
+  "nav.prev": "Previous columns",
+  "nav.next": "Next columns",
+  "nav.hint": "Swipe or tap arrows for more columns"
 }

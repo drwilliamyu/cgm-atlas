@@ -4,13 +4,13 @@ import { loadLang, applyStatic, detectLang, t } from './i18n.js';
 import { initGate } from './gate.js';
 import { loadFreshness, renderFreshness } from './freshness.js';
 import { loadData } from './data.js';
-import { renderPanel, renderCards, renderTable, renderH2H, renderStandards } from './render.js';
+import { renderPanel, renderCards, renderTable, renderH2H, renderStandards, initTableNav, updateScrollButtons } from './render.js';
 
 const PREFS = 'cgmatlas.prefs';
 const EU = ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE'];
 
 let model;
-const state = { jur: 'INT', units: 'mg/dL', lang: 'en', view: 'accuracy', sort: 'mard', include: false };
+const state = { jur: 'INT', units: 'mg/dL', lang: 'en', view: 'accuracy', sort: 'mard', include: false, layout: 'table' };
 
 function detectJur() {
   for (const l of navigator.languages || [navigator.language || '']) {
@@ -34,6 +34,7 @@ function readState() {
   state.view = ['accuracy', 'features'].includes(p.get('view')) ? p.get('view') : (saved.view || 'accuracy');
   state.sort = ['mard', 'p2020', 'name'].includes(p.get('sort')) ? p.get('sort') : (saved.sort || 'mard');
   state.include = p.get('all') === '1' || !!saved.include;
+  state.layout = ['table', 'cards'].includes(p.get('layout')) ? p.get('layout') : (saved.layout || 'table');
   const u = p.get('units') || saved.units;
   state.units = ['mg/dL', 'mmol/L'].includes(u) ? u : jurUnits();
 }
@@ -50,6 +51,7 @@ function writeState() {
   if (state.view !== 'accuracy') p.set('view', state.view);
   if (state.sort !== 'mard') p.set('sort', state.sort);
   if (state.include) p.set('all', '1');
+  if (state.layout !== 'table') p.set('layout', state.layout);
   history.replaceState(null, '', `${location.pathname}?${p}`);
   store.set(PREFS, { ...state });
 }
@@ -85,8 +87,11 @@ function render() {
   const def = document.getElementById('def-2020');
   def.hidden = state.view !== 'accuracy';
   def.textContent = t(state.units === 'mmol/L' ? 'def.2020.mmol' : 'def.2020.mg');
-  renderCards(list, state);
-  renderTable(list, state, (key) => { state.sort = key; syncControls(); writeState(); render(); });
+  const cards = state.layout === 'cards';
+  document.getElementById('cards').hidden = !cards;
+  document.getElementById('table-wrap').hidden = cards;
+  if (cards) { document.getElementById('table-nav').hidden = true; renderCards(list, state); }
+  else renderTable(list, state, (key) => { state.sort = key; syncControls(); writeState(); render(); });
   renderH2H(model);
   renderStandards(model);
   renderFreshness();
@@ -99,6 +104,7 @@ function syncControls() {
   document.getElementById('include').checked = state.include;
   document.querySelectorAll('input[name="view"]').forEach(r => { r.checked = r.value === state.view; });
   document.querySelectorAll('input[name="units"]').forEach(r => { r.checked = r.value === state.units; });
+  document.querySelectorAll('input[name="layout"]').forEach(r => { r.checked = r.value === state.layout; });
 }
 
 function fillJurisdictions() {
@@ -120,6 +126,8 @@ function bindControls() {
   document.getElementById('include').addEventListener('change', e => { state.include = e.target.checked; writeState(); render(); });
   document.querySelectorAll('input[name="view"]').forEach(r => r.addEventListener('change', () => { state.view = r.value; writeState(); render(); }));
   document.querySelectorAll('input[name="units"]').forEach(r => r.addEventListener('change', () => { state.units = r.value; writeState(); render(); }));
+  document.querySelectorAll('input[name="layout"]').forEach(r => r.addEventListener('change', () => { state.layout = r.value; writeState(); render(); }));
+  initTableNav();
 
   // Bottom sheet (phones only; hidden by CSS on wider screens)
   const sheet = document.getElementById('sheet');
@@ -156,7 +164,8 @@ async function main() {
   await loadFreshness(model.changelog);
   render();
   writeState();
-  initGate(() => document.getElementById('main').focus({ preventScroll: true }));
+  initGate(() => { document.getElementById('main').focus({ preventScroll: true }); updateScrollButtons(); });
+  updateScrollButtons();
 }
 
 main();

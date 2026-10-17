@@ -17,6 +17,14 @@ function sponsorBadge(study) {
   return badge(sponsorClass(study.sponsor), t(map[study.sponsor] || 'badge.unknown'), study.sponsor_note || undefined);
 }
 
+function compactSponsor(study) {
+  const full = sponsorBadge(study);
+  const letter = { manufacturer: 'M', independent: 'I', competitor: 'C', mixed: 'C', unknown: '?' }[study.sponsor] || '?';
+  full.textContent = letter;
+  full.setAttribute('aria-label', full.title);
+  return full;
+}
+
 function statusFor(device, jur) {
   if (jur === 'INT') return null;
   const a = device.approvals.find(x => x.jurisdiction === jur);
@@ -41,10 +49,9 @@ function approvalDetail(rec) {
 /* ---------- Regulator panel ---------- */
 export function renderPanel(j) {
   const root = document.getElementById('reg-panel');
-  const row = (label, text, url) => [
+  const row = (label, text, url) => h('div', {},
     h('dt', {}, label),
-    h('dd', {}, url ? link(url, text) : text)
-  ];
+    h('dd', {}, url ? link(url, text) : text));
   const dl = h('dl', {},
     row(t('panel.regulator'), j.regulator, j.regulator_url),
     j.register ? row(t('panel.register'), j.register, j.register_url) : null,
@@ -158,90 +165,131 @@ export function renderCards(list, state) {
   }));
 }
 
-/* ---------- Table (wider screens) ---------- */
+/* ---------- Table (all widths; default layout) ----------
+   One line per row: no wrapping. The device column and header row stay fixed;
+   other columns scroll sideways. Long text is cut with an ellipsis and shown
+   in full in the title and the evidence panel. */
 const ACC_COLS = [
   { key: 'mard', label: 'col.mard', num: true, sort: 'mard' },
   { key: 'p2020', label: 'col.p2020', num: true, sort: 'p2020' },
+  { key: 'status', label: 'col.approval', jurOnly: true },
   { key: 'ref', label: 'col.reference' },
-  { key: 'src', label: 'col.source' }
+  { key: 'src', label: 'col.source' },
+  { key: 'maker', label: 'col.provider' }
 ];
 const FEAT_COLS = [
   { key: 'wear', label: 'col.wear', num: true },
+  { key: 'status', label: 'col.approval', jurOnly: true },
   { key: 'sensor', label: 'col.sensor' },
   { key: 'otc', label: 'col.otc' },
-  { key: 'aid', label: 'col.aid' }
+  { key: 'aid', label: 'col.aid' },
+  { key: 'maker', label: 'col.provider' }
 ];
 
+const clip = (text, cls = '') => h('span', { class: `clip ${cls}`.trim(), title: text }, text);
+const dash = () => h('span', { class: 'missing' }, '—');
+
+function cellFor(key, d, st) {
+  const hl = d.headline, f = d.features;
+  switch (key) {
+    case 'mard': return h('td', { class: 'num' }, h('span', { class: 'big' }, hl?.mard != null ? fmt(hl.mard) : '—'), hl?.range_limited ? '*' : '');
+    case 'p2020': return h('td', { class: 'num' }, hl?.p2020 != null ? fmt(hl.p2020) : '—');
+    case 'status': return h('td', {}, badge(st.cls, st.text));
+    case 'ref': return h('td', {}, hl ? clip(hl.study.reference_method) : dash());
+    case 'src': return h('td', {}, hl
+      ? [h('a', { href: hl.study.url, rel: 'noopener', target: '_blank', class: 'clip', title: hl.study.citation }, hl.study.citation.split(' et al')[0].split('.')[0] + ` ${hl.study.year}`), ' ', compactSponsor(hl.study),
+         d.hasH2H ? [' ', h('a', { class: 'badge badge-h', href: '#h2h-title', title: t('badge.headtohead') }, 'H2H')] : null]
+      : h('span', { class: 'missing' }, t('missing')));
+    case 'maker': return h('td', {}, link(d.maker.url, d.maker.name));
+    case 'wear': return h('td', { class: 'num' }, f.wear_days != null ? fmtInt(f.wear_days) : dash());
+    case 'sensor': return h('td', {}, d.sensor_type);
+    case 'otc': return h('td', {}, d.otc ? t('yes') : t('no'));
+    case 'aid': return h('td', {}, f.aid ? clip(f.aid) : dash());
+  }
+}
+
 export function renderTable(list, state, onSort) {
-  const cols = state.view === 'features' ? FEAT_COLS : ACC_COLS;
-  const showStatus = state.jur !== 'INT';
+  const cols = (state.view === 'features' ? FEAT_COLS : ACC_COLS).filter(c => !c.jurOnly || state.jur !== 'INT');
   const thead = document.getElementById('thead');
   const tbody = document.getElementById('tbody');
   document.getElementById('table-caption').textContent = t('count', { n: list.length });
 
-  const sortBtn = (c) => {
-    if (!c.sort) return t(c.label);
-    return h('button', { type: 'button', onclick: () => onSort(c.sort) },
-      t(c.label), state.sort === c.sort ? (c.sort === 'mard' ? ' ▲' : ' ▼') : '');
-  };
-  const ariaSort = (c) => state.sort === c.sort ? (c.sort === 'mard' ? 'ascending' : 'descending') : null;
+  const arrow = (key) => state.sort === key ? (key === 'p2020' ? ' ▼' : ' ▲') : '';
+  const ariaSort = (key) => state.sort === key ? (key === 'p2020' ? 'descending' : 'ascending') : null;
 
   thead.replaceChildren(h('tr', {},
-    h('th', { scope: 'col', 'aria-sort': state.sort === 'name' ? 'ascending' : null },
-      h('button', { type: 'button', onclick: () => onSort('name') }, t('col.device'), state.sort === 'name' ? ' ▲' : '')),
-    h('th', { scope: 'col' }, t('col.provider')),
-    cols.map(c => h('th', { scope: 'col', 'aria-sort': ariaSort(c), class: c.num ? 'num' : null }, sortBtn(c))),
-    showStatus ? h('th', { scope: 'col' }, t('col.approval')) : null,
-    h('th', { scope: 'col' }, h('span', { class: 'sr-only' }, t('evidence.show')))
+    h('th', { scope: 'col', class: 'col-dev', 'aria-sort': ariaSort('name') },
+      h('button', { type: 'button', onclick: () => onSort('name') }, t('col.device'), arrow('name'))),
+    cols.map(c => h('th', { scope: 'col', 'aria-sort': c.sort ? ariaSort(c.sort) : null, class: c.num ? 'num' : null },
+      c.sort ? h('button', { type: 'button', onclick: () => onSort(c.sort) }, t(c.label), arrow(c.sort)) : t(c.label)))
   ));
 
-  const span = 3 + cols.length + (showStatus ? 1 : 0);
+  const span = 1 + cols.length;
   const rows = [];
   for (const { d, dim } of list) {
     const hl = d.headline;
     const st = statusFor(d, state.jur);
-    let cells;
-    if (state.view === 'features') {
-      const f = d.features;
-      cells = [
-        h('td', { class: 'num' }, f.wear_days != null ? fmtInt(f.wear_days) : h('span', { class: 'missing' }, '—')),
-        h('td', {}, d.sensor_type),
-        h('td', {}, d.otc ? t('yes') : t('no')),
-        h('td', {}, f.aid || h('span', { class: 'missing' }, '—'))
-      ];
-    } else {
-      cells = [
-        h('td', { class: 'num' }, h('span', { class: 'big' }, hl?.mard != null ? fmt(hl.mard) : '—'), hl?.range_limited ? '*' : ''),
-        h('td', { class: 'num' }, hl?.p2020 != null ? fmt(hl.p2020) : '—'),
-        h('td', {}, hl ? hl.study.reference_method : '—'),
-        h('td', {}, hl ? [link(hl.study.url, hl.study.citation.split('.')[0] + ` ${hl.study.year}`), ' ', sponsorBadge(hl.study)] : h('span', { class: 'missing' }, t('missing')),
-          d.hasH2H ? [' ', h('a', { class: 'badge badge-h', href: '#h2h-title', title: t('badge.headtohead') }, 'H2H')] : null)
-      ];
-    }
     const evId = `ev-${d.id}`;
-    const toggle = h('button', { type: 'button', class: 'btn btn-ghost row-toggle', 'aria-expanded': 'false', 'aria-controls': evId }, t('evidence.show'));
+    const toggle = h('button', { type: 'button', class: 'dev-toggle', 'aria-expanded': 'false', 'aria-controls': evId, title: `${d.name} — ${t('evidence.show')}` },
+      h('span', { class: 'chev', 'aria-hidden': 'true' }, '›'),
+      h('span', { class: 'clip' }, d.short || d.name));
     const evRow = h('tr', { class: 'ev-row', id: evId, hidden: true },
       h('td', { colspan: span },
-        st?.rec ? approvalDetail(st.rec) : null,
-        d.note ? h('p', { class: 'ev-sub' }, d.note) : null,
-        hl?.range_limited ? h('p', { class: 'ev-sub' }, `* ${hl.range_limited}`) : null,
-        h('div', { class: 'ev-cols' }, evidenceBlocks(d)),
-        h('div', { class: 'ev-group' }, h('h3', {}, t('evidence.features')), featureList(d))
-      ));
+        h('div', { class: 'ev-pin' },
+          h('p', { class: 'ev-title' }, d.name, ' — ', link(d.maker.url, d.maker.name)),
+          st?.rec ? approvalDetail(st.rec) : null,
+          d.note ? h('p', { class: 'ev-sub' }, d.note) : null,
+          hl?.range_limited ? h('p', { class: 'ev-sub' }, `* ${hl.range_limited}`) : null,
+          h('div', { class: 'ev-cols' }, evidenceBlocks(d)),
+          h('div', { class: 'ev-group' }, h('h3', {}, t('evidence.features')), featureList(d)))));
     toggle.addEventListener('click', () => {
       const open = toggle.getAttribute('aria-expanded') === 'true';
       toggle.setAttribute('aria-expanded', String(!open));
       evRow.hidden = open;
     });
     rows.push(h('tr', { class: dim ? 'dim' : null },
-      h('th', { scope: 'row' }, d.name),
-      h('td', {}, link(d.maker.url, d.maker.name)),
-      cells,
-      showStatus ? h('td', {}, badge(st.cls, st.text)) : null,
-      h('td', {}, toggle)
+      h('th', { scope: 'row', class: 'col-dev' }, toggle),
+      cols.map(c => cellFor(c.key, d, st))
     ), evRow);
   }
   tbody.replaceChildren(...rows);
+  updateScrollButtons();
+}
+
+/* Left/right column navigation for narrow screens */
+export function initTableNav() {
+  const wrap = document.getElementById('table-wrap');
+  const prev = document.getElementById('col-prev');
+  const next = document.getElementById('col-next');
+  let pending = null, timer;
+  const step = (dir) => {
+    const devW = wrap.querySelector('thead .col-dev')?.offsetWidth || 0;
+    const cells = [...wrap.querySelectorAll('thead th:not(.col-dev)')];
+    const view = pending ?? wrap.scrollLeft;
+    // Snap to the next or previous column edge after the fixed device column.
+    const edges = cells.map(c => c.offsetLeft - devW);
+    const target = dir > 0
+      ? edges.find(e => e > view + 40) ?? wrap.scrollWidth
+      : ([...edges].reverse().find(e => e < view - 40) ?? 0);
+    pending = Math.min(target, wrap.scrollWidth - wrap.clientWidth);
+    clearTimeout(timer); timer = setTimeout(() => { pending = null; }, 450);
+    wrap.scrollTo({ left: target, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  };
+  prev.addEventListener('click', () => step(-1));
+  next.addEventListener('click', () => step(1));
+  wrap.addEventListener('scroll', updateScrollButtons, { passive: true });
+  window.addEventListener('resize', updateScrollButtons);
+}
+
+export function updateScrollButtons() {
+  const wrap = document.getElementById('table-wrap');
+  const nav = document.getElementById('table-nav');
+  if (!wrap || !nav) return;
+  const max = wrap.scrollWidth - wrap.clientWidth;
+  nav.hidden = max <= 2;
+  document.getElementById('col-prev').disabled = wrap.scrollLeft <= 2;
+  document.getElementById('col-next').disabled = wrap.scrollLeft >= max - 2;
+  wrap.classList.toggle('scrolled', wrap.scrollLeft > 2);
 }
 
 /* ---------- Head-to-head ---------- */

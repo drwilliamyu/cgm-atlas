@@ -63,5 +63,11 @@
   "footer.data": "Datendateien",
   "translated.note": "Übersetzte Oberfläche; Daten und Zitate sind auf Englisch.",
   "def.2020.mg": "%20/20: Anteil der Werte innerhalb ±20 mg/dL der Referenz unter 100 mg/dL oder innerhalb ±20 % ab 100 mg/dL.",
-  "def.2020.mmol": "%20/20: Anteil der Werte innerhalb ±1,1 mmol/L der Referenz unter 5,6 mmol/L oder innerhalb ±20 % ab 5,6 mmol/L."
+  "def.2020.mmol": "%20/20: Anteil der Werte innerhalb ±1,1 mmol/L der Referenz unter 5,6 mmol/L oder innerhalb ±20 % ab 5,6 mmol/L.",
+  "ctl.layout": "Darstellung",
+  "ctl.layout.table": "Tabelle",
+  "ctl.layout.cards": "Karten",
+  "nav.prev": "Vorherige Spalten",
+  "nav.next": "Nächste Spalten",
+  "nav.hint": "Wischen oder Pfeile für mehr Spalten"
 }
