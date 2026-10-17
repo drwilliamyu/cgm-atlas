@@ -69,5 +69,6 @@
   "ctl.layout.cards": "Fiches",
   "nav.prev": "Colonnes précédentes",
   "nav.next": "Colonnes suivantes",
-  "nav.hint": "Balayez ou touchez les flèches pour plus de colonnes"
+  "nav.hint": "Balayez ou touchez les flèches pour plus de colonnes",
+  "ctl.patient": "Fiche patient"
 }

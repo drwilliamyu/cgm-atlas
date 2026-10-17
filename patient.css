@@ -1,0 +1,73 @@
+/* Patient handout: large type, plain layout, prints on A4 or Letter. */
+body.patient { background: var(--bg); font-size: 18px; line-height: 1.6; }
+
+.pt-toolbar {
+  display: flex; justify-content: space-between; gap: .75rem;
+  padding: .75rem 1rem; padding-top: max(.75rem, env(safe-area-inset-top));
+  background: var(--surface); border-bottom: 1px solid var(--line);
+}
+.pt-setup {
+  background: var(--surface); border-bottom: 1px solid var(--line);
+  padding: .5rem 1rem 1rem; font-size: 16px;
+}
+.pt-setup summary { cursor: pointer; font-weight: 700; min-height: var(--tap); display: flex; align-items: center; color: var(--brand); }
+.pt-setup .field { max-width: 20rem; margin: .5rem 0 .75rem; }
+.pt-picks { display: grid; gap: .1rem; }
+.pt-picks .check { min-height: 40px; padding: .25rem 0; }
+
+.pt-page {
+  max-width: 44rem; margin: 0 auto; padding: 1.25rem 1rem 2rem;
+  background: var(--surface);
+}
+.pt-head { border-bottom: 3px solid var(--brand); padding-bottom: .75rem; margin-bottom: 1.25rem; }
+.pt-kicker { font-size: .85rem; font-weight: 700; color: var(--brand); text-transform: uppercase; letter-spacing: .04em; margin: 0 0 .25rem; }
+.pt-head h1 { font-size: 1.75rem; margin: 0 0 .5rem; }
+.pt-lead { font-size: 1.05rem; }
+.pt-page section { margin-bottom: 1.5rem; }
+.pt-page h2 { font-size: 1.25rem; color: var(--brand); margin-bottom: .5rem; }
+.pt-page ul { padding-left: 1.25rem; margin: 0 0 .75rem; }
+.pt-page li { margin: .35rem 0; }
+.pt-small { font-size: .85rem; color: var(--ink-2); }
+
+.pt-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--line); border-radius: 10px; }
+.pt-table { border-collapse: collapse; width: 100%; font-size: .9rem; }
+.pt-table th, .pt-table td { padding: .55rem .65rem; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; }
+.pt-table thead th { background: var(--brand-soft); font-size: .8rem; }
+.pt-table td:first-child { font-weight: 700; }
+.pt-table tr:last-child td { border-bottom: 0; }
+
+.pt-q { list-style: none; padding-left: 0 !important; }
+.pt-q li { padding-left: 1.6rem; position: relative; }
+.pt-q li::before { content: "?"; position: absolute; left: 0; top: .1rem; width: 1.15rem; height: 1.15rem; border-radius: 50%; background: var(--brand); color: var(--brand-ink); font-size: .75rem; font-weight: 700; display: grid; place-items: center; }
+
+.pt-foot { border-top: 1px solid var(--line); padding-top: .75rem; }
+
+@media (min-width: 48em) {
+  .pt-page { margin: 1.5rem auto; padding: 2rem 2.5rem; border-radius: 12px; border: 1px solid var(--line); }
+  .pt-picks { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media print {
+  @page { size: auto; margin: 12mm 14mm; }
+  :root { --bg: #fff; --surface: #fff; --ink: #000; --ink-2: #333; --line: #bbb; --brand: #0f5c63; --brand-soft: #e3f0f0; --brand-ink: #fff; }
+  body.patient { font-size: 10pt; line-height: 1.35; background: #fff; color: #000; }
+  .pt-head { margin-bottom: .6rem; padding-bottom: .4rem; }
+  .pt-head h1 { font-size: 16pt; margin-bottom: .2rem; }
+  .pt-page section { margin-bottom: .6rem; }
+  .pt-page h2 { font-size: 12.5pt; margin-bottom: .25rem; }
+  .pt-page p { margin-bottom: .4rem; }
+  .pt-page li { margin: .1rem 0; }
+  .pt-lead { font-size: 1em; margin-bottom: .2rem; }
+  .pt-foot { padding-top: .4rem; }
+  .pt-foot p { margin-bottom: .2rem; }
+  .pt-q li { margin: 0; }
+  .pt-table th, .pt-table td { padding: .3rem .5rem; }
+  .no-print { display: none !important; }
+  .pt-page { max-width: none; margin: 0; padding: 0; border: 0; }
+  .pt-table-wrap { overflow: visible; border-color: #999; }
+  .pt-table { font-size: 9.5pt; }
+  .pt-table tr, .pt-table thead { break-inside: avoid; }
+  .pt-q li::before { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .pt-table thead th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  a { color: #000; text-decoration: none; }
+}

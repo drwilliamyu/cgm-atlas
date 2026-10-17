@@ -24,7 +24,8 @@
     "sensor_type": "transcutaneous",
     "status": "current",
     "otc": true,
-    "note": "Wellness indication; not for diabetes management decisions."
+    "note": "Wellness indication; not for diabetes management decisions.",
+    "wellness": true
   },
   {
     "id": "g7",

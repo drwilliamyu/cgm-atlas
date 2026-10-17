@@ -81,5 +81,7 @@
   "ctl.layout.cards": "Cards",
   "nav.prev": "Previous columns",
   "nav.next": "Next columns",
-  "nav.hint": "Swipe or tap arrows for more columns"
+  "nav.hint": "Swipe or tap arrows for more columns",
+  "ctl.patient": "Patient handout",
+  "declined.patient": "Read patient information about CGMs"
 }

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Continuous glucose monitors: patient information · CGM Atlas</title>
+  <meta name="description" content="Plain-language information about continuous glucose monitors, for people with diabetes and their families.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="patient.css">
+  <script type="module" src="js/patient.js"></script>
+</head>
+<body class="patient">
+  <div class="pt-toolbar no-print">
+    <a href="./" class="btn btn-ghost">‹ Back</a>
+    <button type="button" class="btn btn-primary" id="print">Print or save as PDF</button>
+  </div>
+
+  <details class="pt-setup no-print" id="setup">
+    <summary>Choose devices for this handout</summary>
+    <p class="pt-small">Tick the devices you are discussing with this person. The list shows devices with a record in the selected jurisdiction.</p>
+    <div class="field">
+      <label for="pt-jur">Jurisdiction</label>
+      <select id="pt-jur"></select>
+    </div>
+    <div class="pt-picks" id="picks"></div>
+  </details>
+
+  <main class="pt-page" id="page">
+    <header class="pt-head">
+      <p class="pt-kicker" id="pt-place"></p>
+      <h1>Continuous glucose monitors</h1>
+      <p class="pt-lead">Information for people with diabetes and their families. Talk with your diabetes team before you choose or change a device.</p>
+    </header>
+
+    <section>
+      <h2>What is a continuous glucose monitor?</h2>
+      <p>A continuous glucose monitor (CGM) is a small sensor that you wear on your skin. A thin, soft tip goes just under the skin. It measures glucose (sugar) in the fluid around your cells.</p>
+      <p>The sensor sends a new reading to your phone or reader every few minutes. It can warn you when your glucose goes too high or too low.</p>
+      <p>Glucose in this fluid changes a few minutes after glucose in your blood. When your glucose changes fast, for example after a meal or exercise, the CGM reading can be a little behind.</p>
+    </section>
+
+    <section>
+      <h2>How accurate are they?</h2>
+      <p>Researchers compare CGM readings with a laboratory blood test. The result is often given as a percentage. In this sheet we call it the <strong>average difference</strong>. Doctors call it MARD.</p>
+      <ul>
+        <li>A <strong>smaller</strong> number means the CGM is, on average, <strong>closer</strong> to the blood test.</li>
+        <li>For example, 8% means that a reading of 10.0 mmol/L (180 mg/dL) is, on average, about 0.8 mmol/L (14 mg/dL) away from the blood test.</li>
+        <li>Each company tests its device in a different way. A difference of 1 or 2 points between two devices may not be important.</li>
+        <li>No CGM is perfect. If the reading does not match how you feel, check with a finger-prick test.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 id="pt-table-title">Devices</h2>
+      <p class="pt-small">Listed in alphabetical order. This list does not rank the devices or recommend one.</p>
+      <div class="pt-table-wrap">
+        <table class="pt-table">
+          <thead>
+            <tr>
+              <th scope="col">Device</th>
+              <th scope="col">Company</th>
+              <th scope="col">Wear time</th>
+              <th scope="col">Average difference</th>
+              <th scope="col">How to get it</th>
+            </tr>
+          </thead>
+          <tbody id="pt-rows"></tbody>
+        </table>
+      </div>
+      <p class="pt-small" id="pt-note"></p>
+    </section>
+
+    <section>
+      <h2>Questions to ask your diabetes team</h2>
+      <ul class="pt-q">
+        <li>Which devices can I get, and is there a subsidy for me?</li>
+        <li>Does the device work with my phone, or do I need a reader?</li>
+        <li>Does it work with my insulin pump, if I have one?</li>
+        <li>How often do I change the sensor, and where do I wear it?</li>
+        <li>When should I still do a finger-prick test?</li>
+        <li>What should I do if the sensor falls off or stops working?</li>
+      </ul>
+    </section>
+
+    <footer class="pt-foot">
+      <p><strong>This sheet is general information.</strong> It does not tell you which device to use. Your diabetes team will help you choose the device that suits you.</p>
+      <p class="pt-small" id="pt-meta"></p>
+    </footer>
+  </main>
+</body>
+</html>

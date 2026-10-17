@@ -69,5 +69,6 @@
   "ctl.layout.cards": "Tarjetas",
   "nav.prev": "Columnas anteriores",
   "nav.next": "Columnas siguientes",
-  "nav.hint": "Deslice o toque las flechas para ver más columnas"
+  "nav.hint": "Deslice o toque las flechas para ver más columnas",
+  "ctl.patient": "Hoja para pacientes"
 }

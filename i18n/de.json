@@ -69,5 +69,6 @@
   "ctl.layout.cards": "Karten",
   "nav.prev": "Vorherige Spalten",
   "nav.next": "Nächste Spalten",
-  "nav.hint": "Wischen oder Pfeile für mehr Spalten"
+  "nav.hint": "Wischen oder Pfeile für mehr Spalten",
+  "ctl.patient": "Patienteninfo"
 }

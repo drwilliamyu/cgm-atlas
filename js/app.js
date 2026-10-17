@@ -92,6 +92,9 @@ function render() {
   document.getElementById('table-wrap').hidden = cards;
   if (cards) { document.getElementById('table-nav').hidden = true; renderCards(list, state); }
   else renderTable(list, state, (key) => { state.sort = key; syncControls(); writeState(); render(); });
+  // Patient handout: same jurisdiction, devices with a record here (not wellness-only).
+  const ids = list.filter(x => !x.dim && !x.d.wellness).map(x => x.d.id);
+  document.getElementById('patient-link').href = `patient.html?${new URLSearchParams({ j: state.jur, d: ids.join(',') })}`;
   renderH2H(model);
   renderStandards(model);
   renderFreshness();

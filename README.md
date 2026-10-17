@@ -9,6 +9,8 @@ Plain HTML5, CSS and JavaScript (ES modules). No frameworks, packages or build s
 ```
 index.html          Main page (mobile-first: cards on phones, table from 768 px)
 about.html          Method, disclaimer, conflicts, corrections
+patient.html        Plain-language patient handout (print or save as PDF)
+patient.css         Handout styles, including print
 styles.css          All styles; base CSS targets a 360 px phone
 js/
   app.js            State, URL sync, controls
@@ -16,6 +18,7 @@ js/
   render.js         Panel, cards, table, evidence, head-to-head, standards
   i18n.js           Interface language
   gate.js           Professional-use disclaimer modal
+  patient.js        Builds the patient handout from the same data
   freshness.js      "Data last updated" from the Last-Modified header
   dom.js            DOM and storage helpers
 data/               One JSON file per entity (see below)

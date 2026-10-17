@@ -53,6 +53,10 @@
 
     <div class="toolbar">
       <p class="count" id="count" aria-live="polite"></p>
+      <a class="btn btn-ghost" id="patient-link" href="patient.html">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l4 4v14H7z M14 3v4h4 M10 12h6 M10 16h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        <span data-i18n="ctl.patient">Patient handout</span>
+      </a>
       <button type="button" class="btn btn-ghost sheet-open" id="sheet-open" aria-expanded="false" aria-controls="sheet">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         <span data-i18n="ctl.filters">Filter &amp; sort</span>
@@ -124,6 +128,7 @@
       <li><a href="https://www.diabetes.org.uk/" rel="noopener">Diabetes UK</a></li>
       <li><a href="https://diabetes.org/" rel="noopener">American Diabetes Association</a></li>
     </ul>
+    <p><a class="btn btn-primary" href="patient.html" data-i18n="declined.patient">Read patient information about CGMs</a></p>
     <button type="button" class="btn btn-ghost" id="declined-back" data-i18n="declined.back">I am a health professional</button>
   </section>
 
