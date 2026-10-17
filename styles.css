@@ -384,3 +384,34 @@ details.evidence[open] > summary::after { content: "−"; }
 }
 .group-label.group-dim { background: var(--bg); color: var(--ink-2); border-left-color: var(--line); }
 .card.nodata { border-style: dashed; border-color: var(--amber); }
+
+/* ---------- Standards page ---------- */
+.std-page .lead { font-size: 1.05rem; }
+.std-toc { display: flex; flex-wrap: wrap; gap: .25rem 1rem; margin: .5rem 0 1rem; font-size: .9rem; }
+.std-toc a { min-height: var(--tap); display: inline-flex; align-items: center; }
+.std-wrap { max-height: none; }
+.std-table { font-size: .88rem; }
+.table-wrap .std-table th, .table-wrap .std-table td { white-space: normal; vertical-align: top; width: 14rem; min-width: 14rem; line-height: 1.4; }
+.table-wrap .std-table td.num, .table-wrap .std-table th.num { width: 7rem; min-width: 7rem; }
+.table-wrap .std-table .col-dev { width: 9.5rem; min-width: 9.5rem; max-width: 9.5rem; font-weight: 700; }
+.table-wrap .thr-table td:nth-child(2) { width: 11rem; min-width: 11rem; }
+.std-table tr.fw-strong > th.col-dev { box-shadow: inset 4px 0 0 var(--good); }
+.std-table tr.fw-mid > th.col-dev { box-shadow: inset 4px 0 0 var(--brand); }
+.std-table tr.fw-weak > th.col-dev { box-shadow: inset 4px 0 0 var(--red); }
+.std-table tr.fw-prop > th.col-dev { box-shadow: inset 4px 0 0 var(--amber); }
+.legend { font-size: .8rem; color: var(--ink-2); display: flex; flex-wrap: wrap; gap: .3rem .9rem; align-items: center; }
+.sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: .3rem; vertical-align: -1px; }
+.sw-strong { background: var(--good); } .sw-mid { background: var(--brand); } .sw-weak { background: var(--red); } .sw-prop { background: var(--amber); }
+.dev-name { display: block; }
+.prose-block li { margin: .5rem 0; }
+.src li { margin: .35rem 0; font-size: .9rem; }
+@media (min-width: 48em) {
+  .table-wrap .std-table .col-dev { width: 13rem; min-width: 13rem; max-width: 13rem; }
+}
+.thr-box { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin-bottom: .75rem; }
+.thr-table { width: 100%; border-collapse: collapse; }
+.thr-table th, .thr-table td { padding: .55rem .7rem; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+.thr-table thead th { font-size: .78rem; color: var(--ink-2); background: var(--surface); }
+.thr-table tbody th { font-weight: 600; }
+.thr-table .num { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; font-weight: 700; width: 5.5rem; }
+.thr-table tr:last-child > * { border-bottom: 0; }

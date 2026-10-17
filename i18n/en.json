@@ -87,5 +87,7 @@
   "group.nodata.p2020": "No published %20/20",
   "group.nodata.mard": "No published MARD",
   "group.dim": "No record in this jurisdiction",
-  "nd": "Not published"
+  "nd": "Not published",
+  "footer.standards": "Regulatory standards compared",
+  "standards.compare": "Compare FDA iCGM, CE, TGA and other frameworks side by side ›"
 }

@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Regulatory standards compared · CGM Atlas</title>
+  <meta name="description" content="How FDA iCGM, CE marking, TGA, MHRA, eCGM and IFCC approaches to CGM accuracy compare, and which route each device has taken.">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="js/standards-page.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="topbar">
+    <div class="topbar-row">
+      <a class="brand" href="./">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M5 18 L11 18 L14 10 L18 23 L21 15 L27 15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/></svg>
+        <span>CGM Atlas</span>
+      </a>
+      <a class="btn btn-ghost" href="./">‹ Comparison</a>
+    </div>
+  </header>
+
+  <main id="main" class="std-page">
+    <h1>Regulatory standards compared</h1>
+    <p class="lead">Only the United States sets binding, published accuracy criteria for CGMs: the FDA iCGM special controls. CE marking (EU and UK) has no CGM-specific accuracy criteria. The TGA reviews device-specific clinical data but publishes no CGM threshold. eCGM and the IFCC guideline are expert proposals, not law.</p>
+    <p class="note">As of 17 October 2026. Each row links its source. Health Canada, Medsafe and Asian regulators are not yet reviewed.</p>
+
+    <nav class="std-toc" aria-label="On this page">
+      <a href="#frameworks">Frameworks</a>
+      <a href="#thresholds">Accuracy thresholds</a>
+      <a href="#devices">Devices by route</a>
+      <a href="#meaning">What it means</a>
+    </nav>
+
+    <!-- 1. Frameworks -->
+    <section id="frameworks" class="block">
+      <h2>1. Frameworks at a glance</h2>
+      <p>Each row is a route to market or a proposed standard. "Binding" means a regulator applies it to every device on that route.</p>
+      <div class="table-nav std-nav" data-for="fw-wrap" hidden>
+        <button type="button" class="btn btn-ghost nav-btn" data-dir="-1" aria-label="Previous columns">‹</button>
+        <span class="nav-hint">Swipe or tap arrows for more columns</span>
+        <button type="button" class="btn btn-ghost nav-btn" data-dir="1" aria-label="Next columns">›</button>
+      </div>
+      <div class="table-wrap std-wrap" id="fw-wrap" tabindex="0" role="region" aria-label="Frameworks compared">
+        <table class="std-table">
+          <thead>
+            <tr>
+              <th scope="col" class="col-dev">Framework</th>
+              <th scope="col">Where</th>
+              <th scope="col">Binding?</th>
+              <th scope="col">Published accuracy criteria</th>
+              <th scope="col">Study design requirements</th>
+              <th scope="col">Clinical data public?</th>
+              <th scope="col">Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="fw-strong">
+              <th scope="row" class="col-dev">FDA iCGM special controls</th>
+              <td>United States</td>
+              <td><span class="badge badge-v">Yes</span> Class II, 510(k) or De Novo</td>
+              <td>Yes. Seven range-specific thresholds on the lower 95% confidence bound, plus limits on dangerous errors and trend errors (table 2).</td>
+              <td>Study must represent the full intended population and the full measuring range. Paediatric data comparable to adults, or an accepted justification.</td>
+              <td>Decision summaries public; full study reports not public.</td>
+              <td><a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-862/subpart-B/section-862.1355" rel="noopener" target="_blank">21 CFR 862.1355</a></td>
+            </tr>
+            <tr class="fw-strong">
+              <th scope="row" class="col-dev">FDA PMA (non-iCGM)</th>
+              <td>United States</td>
+              <td><span class="badge badge-v">Yes</span> Class III</td>
+              <td>No fixed numeric thresholds; FDA judges each application's safety and effectiveness data.</td>
+              <td>Device-specific clinical study reviewed by FDA.</td>
+              <td>Summary of Safety and Effectiveness Data (SSED) public.</td>
+              <td><a href="https://www.accessdata.fda.gov/cdrh_docs/pdf16/P160007S047B.pdf" rel="noopener" target="_blank">Example: SSED P160007/S047</a></td>
+            </tr>
+            <tr class="fw-mid">
+              <th scope="row" class="col-dev">TGA (ARTG inclusion)</th>
+              <td>Australia</td>
+              <td><span class="badge badge-v">Yes</span></td>
+              <td>No published CGM-specific threshold.</td>
+              <td>Product-specific clinical data required and evaluated; approved indications match the available data (Pemberton 2023).</td>
+              <td>ARTG entry public; clinical evidence not routinely published.</td>
+              <td><a href="https://doi.org/10.1111/dom.14962" rel="noopener" target="_blank">Pemberton et al. 2023</a></td>
+            </tr>
+            <tr class="fw-weak">
+              <th scope="row" class="col-dev">CE marking (MDR 2017/745)</th>
+              <td>European Union</td>
+              <td><span class="badge badge-v">Yes</span> via notified body</td>
+              <td>None CGM-specific. No universally accepted standard for assessing CGM accuracy for CE marking (DTN-UK).</td>
+              <td>No standardised criteria; small samples or data from similar devices may be accepted (Pemberton 2023).</td>
+              <td><strong>No.</strong> Clinical-study reports, reference-method details and analytical documentation are not public (2026 clinical opinion).</td>
+              <td><a href="https://eur-lex.europa.eu/eli/reg/2017/745/oj" rel="noopener" target="_blank">MDR</a> · <a href="https://ora.ox.ac.uk/objects/uuid:f09b0bd6-a256-4c21-a3ee-d491abbf1d37" rel="noopener" target="_blank">2026 opinion</a></td>
+            </tr>
+            <tr class="fw-weak">
+              <th scope="row" class="col-dev">CE / UKCA (MHRA)</th>
+              <td>United Kingdom</td>
+              <td><span class="badge badge-v">Yes</span></td>
+              <td>None CGM-specific. Any CE-marked device can be marketed in the UK without a national assessment.</td>
+              <td>As for CE marking.</td>
+              <td>No.</td>
+              <td><a href="https://abcd.care/sites/default/files/resources/DTN-UK%20statement%20on%20the%20assessment%20of%20accuracy%20for%20CGM%20systems_0.pdf" rel="noopener" target="_blank">DTN-UK statement</a></td>
+            </tr>
+            <tr class="fw-prop">
+              <th scope="row" class="col-dev">eCGM (Mathieu et al. 2024)</th>
+              <td>Europe (proposal)</td>
+              <td><span class="badge badge-u">No</span> expert proposal</td>
+              <td>Yes. Mirrors the iCGM thresholds (table 2).</td>
+              <td>About 100 adults; lab reference analyser; meal and insulin challenges; ≥8% of pairs &lt;70 mg/dL and &gt;5% &gt;300 mg/dL; early, mid and late wear; ≥3 sensor lots; ≥10,000 pairs per adult site; interference testing.</td>
+              <td>Requires full disclosure of trial data on the label.</td>
+              <td><a href="https://doi.org/10.1111/dom.16153" rel="noopener" target="_blank">DOI 10.1111/dom.16153</a></td>
+            </tr>
+            <tr class="fw-prop">
+              <th scope="row" class="col-dev">IFCC WG-CGM guideline (2026)</th>
+              <td>International (proposal)</td>
+              <td><span class="badge badge-u">No</span> proposed guideline</td>
+              <td>Yes. Seven minimum point-accuracy criteria by glucose range (values not reproduced here pending full-text review).</td>
+              <td>Standardised study procedures, dynamic in-clinic testing, comparator method and comparator bias/imprecision limits.</td>
+              <td>Structured reporting proposed.</td>
+              <td><a href="https://boris-portal.unibe.ch/entities/publication/dd9cab02-4c0d-4cb3-b030-6908de602883" rel="noopener" target="_blank">Pleus et al., Clin Chim Acta 2026</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/40326433/" rel="noopener" target="_blank">comparator paper</a></td>
+            </tr>
+            <tr class="fw-prop">
+              <th scope="row" class="col-dev">DTN-UK position</th>
+              <td>United Kingdom (clinical body)</td>
+              <td><span class="badge badge-u">No</span> recommendation</td>
+              <td>Recommends devices meeting eCGM criteria or FDA Class III pre-market standards.</td>
+              <td>Prefers published, peer-reviewed accuracy studies; points to the DSN Forum chart.</td>
+              <td>—</td>
+              <td><a href="https://abcd.care/node/3236" rel="noopener" target="_blank">DTN-UK</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="legend"><span class="sw sw-strong"></span> Binding numeric criteria <span class="sw sw-mid"></span> Binding, device-specific review, no published threshold <span class="sw sw-weak"></span> Binding, no CGM-specific criteria <span class="sw sw-prop"></span> Proposal or recommendation</p>
+    </section>
+
+    <!-- 2. Thresholds -->
+    <section id="thresholds" class="block">
+      <h2>2. Accuracy thresholds: iCGM and eCGM</h2>
+      <p>Percentage of CGM readings that must fall within each band of the laboratory reference, in adults. iCGM applies the threshold to the lower bound of the 95% confidence interval. eCGM proposes the same values.</p>
+      <div class="thr-box">
+        <table class="std-table thr-table">
+          <thead>
+            <tr>
+              <th scope="col">Reference glucose and agreement band</th>
+              <th scope="col" class="num">FDA iCGM</th>
+              <th scope="col" class="num">eCGM</th>
+            </tr>
+          </thead>
+          <tbody><tr><th scope="row">&lt;70 mg/dL (&lt;3.9 mmol/L)<span class="ev-sub">within ±15 mg/dL (±0.8 mmol/L)</span></th><td class="num">&gt;85%</td><td class="num">&gt;85%</td></tr><tr><th scope="row">70–180 mg/dL (3.9–10.0 mmol/L)<span class="ev-sub">within ±15%</span></th><td class="num">&gt;70%</td><td class="num">&gt;70%</td></tr><tr><th scope="row">&gt;180 mg/dL (&gt;10.0 mmol/L)<span class="ev-sub">within ±15%</span></th><td class="num">&gt;80%</td><td class="num">&gt;80%</td></tr><tr><th scope="row">&lt;70 mg/dL (&lt;3.9 mmol/L)<span class="ev-sub">within ±40 mg/dL (±2.2 mmol/L)</span></th><td class="num">&gt;98%</td><td class="num">&gt;98%</td></tr><tr><th scope="row">70–180 mg/dL (3.9–10.0 mmol/L)<span class="ev-sub">within ±40%</span></th><td class="num">&gt;99%</td><td class="num">&gt;99%</td></tr><tr><th scope="row">&gt;180 mg/dL (&gt;10.0 mmol/L)<span class="ev-sub">within ±40%</span></th><td class="num">&gt;99%</td><td class="num">&gt;99%</td></tr><tr><th scope="row">Whole range<span class="ev-sub">within ±20%</span></th><td class="num">&gt;87%</td><td class="num">&gt;87%</td></tr><tr><th scope="row">Dangerous errors<span class="ev-sub">CGM &lt;70 when reference &gt;180, or CGM &gt;180 when reference &lt;70</span></th><td class="num">None allowed</td><td class="num">0%</td></tr><tr><th scope="row">Trend errors<span class="ev-sub">false rising or falling trend during rapid change</span></th><td class="num">≤1% each way</td><td class="num">&lt;1%</td></tr></tbody>
+        </table>
+      </div>
+      <p class="note">%20/20 shown on the comparison page is related to, but not the same as, the iCGM "whole range ±20%" criterion: %20/20 uses ±20 mg/dL below 100 mg/dL. The IFCC proposal sets its own range-specific minimums; its values will be added after full-text review.</p>
+    </section>
+
+    <!-- 3. Devices by route -->
+    <section id="devices" class="block">
+      <h2>3. Devices by regulatory route</h2>
+      <p>Route each device has taken in each jurisdiction, from the site's data. Green = confirmed on a regulator or regulatory-summary page. Amber = reported, not yet verified on the register.</p>
+      <div class="table-nav std-nav" data-for="dev-wrap" hidden>
+        <button type="button" class="btn btn-ghost nav-btn" data-dir="-1" aria-label="Previous columns">‹</button>
+        <span class="nav-hint">Swipe or tap arrows for more columns</span>
+        <button type="button" class="btn btn-ghost nav-btn" data-dir="1" aria-label="Next columns">›</button>
+      </div>
+      <div class="table-wrap std-wrap" id="dev-wrap" tabindex="0" role="region" aria-label="Devices by regulatory route">
+        <table class="std-table dev-table">
+          <thead>
+            <tr>
+              <th scope="col" class="col-dev">Device</th>
+              <th scope="col">US (FDA)</th>
+              <th scope="col">Australia (TGA)</th>
+              <th scope="col">EU (CE)</th>
+              <th scope="col">UK (CE/UKCA)</th>
+              <th scope="col">Independent check against iCGM</th>
+            </tr>
+          </thead>
+          <tbody id="dev-rows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 4. Meaning -->
+    <section id="meaning" class="block prose-block">
+      <h2>4. What this means in practice</h2>
+      <ul>
+        <li><strong>A CE mark alone says little about accuracy.</strong> For a CE-only device, look for a published, peer-reviewed accuracy study in people using insulin, with a laboratory reference and glucose challenges.</li>
+        <li><strong>iCGM clearance is the clearest public benchmark.</strong> It is also the gate for use with interoperable automated insulin delivery in the US.</li>
+        <li><strong>PMA devices are not "below" iCGM.</strong> They went through a different, device-specific review. Check the SSED for range-specific accuracy.</li>
+        <li><strong>TGA approval reflects device-specific evidence,</strong> but the threshold applied is not published. Check the indication on the ARTG entry (ages, adjunctive or non-adjunctive use).</li>
+        <li><strong>Watch the population.</strong> Approval for children or type 1 diabetes may rest on data from adults or type 2 diabetes for some CE-marked devices (Diabetes UK, 2023).</li>
+        <li><strong>Even under one standard, systems are not calibrated to the same reference.</strong> The same person can show different time in range on different sensors.</li>
+      </ul>
+    </section>
+
+    <section class="block">
+      <h2>Sources</h2>
+      <ul class="src">
+        <li><a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-862/subpart-B/section-862.1355" rel="noopener" target="_blank">eCFR, 21 CFR 862.1355 (iCGM special controls)</a></li>
+        <li><a href="https://doi.org/10.1111/dom.16153" rel="noopener" target="_blank">Mathieu C et al. Minimum expectations for market authorization of CGM devices in Europe: eCGM. Diabetes Obes Metab 2024</a></li>
+        <li><a href="https://boris-portal.unibe.ch/entities/publication/dd9cab02-4c0d-4cb3-b030-6908de602883" rel="noopener" target="_blank">Pleus S et al. IFCC WG-CGM proposed guideline. Clin Chim Acta 2026;580:120728</a></li>
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/40326433/" rel="noopener" target="_blank">IFCC WG-CGM. Recommendations on comparator measurement data. J Diabetes Sci Technol 2025</a></li>
+        <li><a href="https://doi.org/10.1111/dom.14962" rel="noopener" target="_blank">Pemberton JS et al. CGM accuracy: CE marking vs FDA and TGA. Diabetes Obes Metab 2023</a></li>
+        <li><a href="https://www.diabetes.org.uk/about_us/news/investigating-accuracy-and-safety-data-behind-cgm-devices-uk" rel="noopener" target="_blank">Diabetes UK. Investigating accuracy and safety data behind CGM devices in the UK (2023)</a></li>
+        <li><a href="https://ora.ox.ac.uk/objects/uuid:f09b0bd6-a256-4c21-a3ee-d491abbf1d37" rel="noopener" target="_blank">International clinical opinion on transparency, standardisation and calibration alignment (2026)</a></li>
+        <li><a href="https://abcd.care/sites/default/files/resources/DTN-UK%20statement%20on%20the%20assessment%20of%20accuracy%20for%20CGM%20systems_0.pdf" rel="noopener" target="_blank">DTN-UK statement on the assessment of accuracy for CGM systems</a></li>
+        <li><a href="https://www.ddg.info/fileadmin/user_upload/Positionspapier_CGM-Standardisierung.pdf" rel="noopener" target="_blank">DDG position paper on CGM standardisation (May 2026)</a></li>
+        <li><a href="https://fda.innolitics.com/productcode/SAF" rel="noopener" target="_blank">FDA product code SAF listing (via Innolitics)</a> · <a href="https://fda.innolitics.com/device/K212132" rel="noopener" target="_blank">K212132 FreeStyle Libre 3</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a href="./">Comparison</a>
+    <a href="about.html">Method and sources</a>
+  </footer>
+</body>
+</html>

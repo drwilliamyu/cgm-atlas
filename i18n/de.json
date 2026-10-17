@@ -74,5 +74,6 @@
   "group.nodata.p2020": "Kein veröffentlichter %20/20-Wert",
   "group.nodata.mard": "Kein veröffentlichter MARD-Wert",
   "group.dim": "Kein Eintrag in diesem Rechtsraum",
-  "nd": "Nicht veröffentlicht"
+  "nd": "Nicht veröffentlicht",
+  "footer.standards": "Regulatorische Standards im Vergleich"
 }

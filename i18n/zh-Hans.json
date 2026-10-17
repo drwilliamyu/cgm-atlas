@@ -74,5 +74,6 @@
   "group.nodata.p2020": "无已发表的 %20/20",
   "group.nodata.mard": "无已发表的 MARD",
   "group.dim": "此辖区无记录",
-  "nd": "未发表"
+  "nd": "未发表",
+  "footer.standards": "监管标准比较"
 }

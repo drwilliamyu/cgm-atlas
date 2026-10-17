@@ -10,6 +10,7 @@ Plain HTML5, CSS and JavaScript (ES modules). No frameworks, packages or build s
 index.html          Main page: table on all widths (fixed device column), cards optional
 about.html          Method, disclaimer, conflicts, corrections
 patient.html        Plain-language patient handout (print or save as PDF)
+standards.html      Regulatory standards compared (FDA iCGM, PMA, TGA, CE, UKCA, eCGM, IFCC)
 patient.css         Handout styles, including print
 styles.css          All styles; base CSS targets a 360 px phone
 js/
@@ -19,6 +20,7 @@ js/
   i18n.js           Interface language
   gate.js           Professional-use disclaimer modal
   patient.js        Builds the patient handout from the same data
+  standards-page.js Builds the devices-by-route table on the standards page
   freshness.js      "Data last updated" from the Last-Modified header
   dom.js            DOM and storage helpers
 data/               One JSON file per entity (see below)

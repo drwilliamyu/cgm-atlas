@@ -74,5 +74,6 @@
   "group.nodata.p2020": "Sin %20/20 publicado",
   "group.nodata.mard": "Sin MARD publicado",
   "group.dim": "Sin registro en esta jurisdicción",
-  "nd": "No publicado"
+  "nd": "No publicado",
+  "footer.standards": "Normas regulatorias comparadas"
 }

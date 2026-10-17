@@ -6,7 +6,8 @@
     "sensor_type": "transcutaneous",
     "status": "current",
     "otc": false,
-    "short": "Libre 3"
+    "short": "Libre 3",
+    "icgm_assessed_uk": "Met iCGM accuracy criteria in published data (Pemberton et al. 2023)"
   },
   {
     "id": "libre-plus",
@@ -34,7 +35,8 @@
     "sensor_type": "transcutaneous",
     "status": "current",
     "otc": false,
-    "short": "G7 10-day"
+    "short": "G7 10-day",
+    "icgm_assessed_uk": "Met iCGM accuracy criteria in published data (Pemberton et al. 2023)"
   },
   {
     "id": "g7-15",
@@ -51,7 +53,8 @@
     "sensor_type": "transcutaneous",
     "status": "current",
     "otc": false,
-    "note": "Shares the G7 hardware platform; no separate accuracy figure found."
+    "note": "Shares the G7 hardware platform; no separate accuracy figure found.",
+    "icgm_assessed_uk": "Predecessor Dexcom ONE met iCGM criteria (Pemberton et al. 2023); ONE+ not assessed"
   },
   {
     "id": "stelo",
@@ -137,6 +140,7 @@
     "sensor_type": "transcutaneous",
     "status": "current",
     "otc": false,
-    "short": "TouchCare Nano"
+    "short": "TouchCare Nano",
+    "icgm_assessed_uk": "Approved for children in UK without public paediatric data (Diabetes UK 2023)"
   }
 ]
