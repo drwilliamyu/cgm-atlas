@@ -7,7 +7,7 @@ Plain HTML5, CSS and JavaScript (ES modules). No frameworks, packages or build s
 ## Structure
 
 ```
-index.html          Main page (mobile-first: cards on phones, table from 768 px)
+index.html          Main page: table on all widths (fixed device column), cards optional
 about.html          Method, disclaimer, conflicts, corrections
 patient.html        Plain-language patient handout (print or save as PDF)
 patient.css         Handout styles, including print
