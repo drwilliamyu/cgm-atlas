@@ -1,0 +1,18 @@
+[
+  { "id": "libre-3", "manufacturer": "abbott", "name": "FreeStyle Libre 3", "sensor_type": "transcutaneous", "status": "current", "otc": false },
+  { "id": "libre-plus", "manufacturer": "abbott", "name": "FreeStyle Libre 2 Plus / 3 Plus", "sensor_type": "transcutaneous", "status": "current", "otc": false },
+  { "id": "lingo", "manufacturer": "abbott", "name": "Lingo", "sensor_type": "transcutaneous", "status": "current", "otc": true, "note": "Wellness indication; not for diabetes management decisions." },
+  { "id": "g7", "manufacturer": "dexcom", "name": "G7 (10-day)", "sensor_type": "transcutaneous", "status": "current", "otc": false },
+  { "id": "g7-15", "manufacturer": "dexcom", "name": "G7 15 Day", "sensor_type": "transcutaneous", "status": "current", "otc": false },
+  { "id": "one-plus", "manufacturer": "dexcom", "name": "ONE+", "sensor_type": "transcutaneous", "status": "current", "otc": false, "note": "Shares the G7 hardware platform; no separate accuracy figure found." },
+  { "id": "stelo", "manufacturer": "dexcom", "name": "Stelo", "sensor_type": "transcutaneous", "status": "current", "otc": true },
+  { "id": "simplera", "manufacturer": "medtronic", "name": "Simplera / Simplera Sync", "sensor_type": "transcutaneous", "status": "current", "otc": false },
+  { "id": "guardian-4", "manufacturer": "medtronic", "name": "Guardian 4", "sensor_type": "transcutaneous", "status": "current", "otc": false },
+  { "id": "eversense-365", "manufacturer": "senseonics", "name": "Eversense 365", "sensor_type": "implantable", "status": "current", "otc": false },
+  { "id": "smartguide", "manufacturer": "roche", "name": "Accu-Chek SmartGuide", "sensor_type": "transcutaneous", "status": "current", "otc": false },
+  { "id": "caresens-air", "manufacturer": "isens", "name": "CareSens Air", "sensor_type": "transcutaneous", "status": "current", "otc": false },
+  { "id": "ican-i3", "manufacturer": "sinocare", "name": "iCan i3 / GlucoMen iCan", "sensor_type": "transcutaneous", "status": "current", "otc": false, "note": "Distributed in some European markets by Menarini as GlucoMen iCan." },
+  { "id": "sibionics-gs1", "manufacturer": "sibionics", "name": "GS1", "sensor_type": "transcutaneous", "status": "current", "otc": false },
+  { "id": "yuwell-ct3", "manufacturer": "yuwell", "name": "Anytime CT3", "sensor_type": "transcutaneous", "status": "current", "otc": false },
+  { "id": "touchcare-nano", "manufacturer": "medtrum", "name": "TouchCare Nano", "sensor_type": "transcutaneous", "status": "current", "otc": false }
+]

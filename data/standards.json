@@ -1,0 +1,10 @@
+[
+  { "name": "FDA iCGM special controls (21 CFR 862.1355)", "type": "US regulation", "summary": "Seven range-specific accuracy thresholds on the lower 95% confidence bound, e.g. overall within 20% for more than 87% of readings.", "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-862/subpart-B/section-862.1355" },
+  { "name": "eCGM (Mathieu et al. 2024)", "type": "European expert proposal", "summary": "Mirrors iCGM thresholds; about 100 adults, lab reference, meal and insulin challenges, at least 3 sensor lots, full trial disclosure.", "url": "https://doi.org/10.1111/dom.16153" },
+  { "name": "IFCC WG-CGM guideline (Pleus et al. 2026)", "type": "International proposed guideline", "summary": "Study design, comparator requirements and minimum point-accuracy criteria.", "url": "https://boris-portal.unibe.ch/entities/publication/dd9cab02-4c0d-4cb3-b030-6908de602883" },
+  { "name": "IFCC comparator recommendations (2025)", "type": "International recommendation", "summary": "Comparator method, sample origin, and comparator bias and imprecision limits.", "url": "https://pubmed.ncbi.nlm.nih.gov/40326433/" },
+  { "name": "CLSI POCT05, 2nd edition", "type": "Laboratory standard (paywalled)", "summary": "Performance metrics for continuous interstitial glucose monitoring.", "url": "https://clsi.org/shop/standards/poct05/" },
+  { "name": "Pemberton et al. 2023", "type": "Narrative review", "summary": "Contrasts CE marking with FDA and TGA controls.", "url": "https://doi.org/10.1111/dom.14962" },
+  { "name": "International clinical opinion on transparency (2026)", "type": "Expert opinion", "summary": "Public trial data, calibration-alignment declaration, standard procedures.", "url": "https://ora.ox.ac.uk/objects/uuid:f09b0bd6-a256-4c21-a3ee-d491abbf1d37" },
+  { "name": "DSN Forum UK CGM comparison chart", "type": "UK clinical resource (registration)", "summary": "Study-design score (0-5) for CGMs available in the UK.", "url": "https://www.diabetesspecialistnurseforumuk.co.uk/new-cgm-comparison-chart" }
+]

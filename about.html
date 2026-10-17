@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Method and terms · CGM Atlas</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .prose { max-width: 42rem; }
+    .prose h2 { margin-top: 1.75rem; }
+    .prose li { margin: .35rem 0; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-row">
+      <a class="brand" href="./">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M5 18 L11 18 L14 10 L18 23 L21 15 L27 15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/></svg>
+        <span>CGM Atlas</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="prose">
+    <h1>Method and terms</h1>
+    <p>CGM Atlas lists continuous glucose monitoring (CGM) systems by jurisdiction and shows the studies behind each accuracy figure. It is for health professionals.</p>
+
+    <h2 id="disclaimer">Disclaimer</h2>
+    <ul>
+      <li>This site gives general information only. It is not advice about any individual patient or about the choice of a device.</li>
+      <li>Accuracy figures come from studies with different designs, populations and reference methods. They are not directly comparable across devices.</li>
+      <li>Approval status, indications and subsidy differ by country and change often. Records marked "reported, not yet verified" have not been checked against the regulator's register.</li>
+      <li>Always check the current product label and the local regulator before prescribing.</li>
+      <li>The professional-use confirmation is a self-attestation. It is not access control; the data files are public.</li>
+    </ul>
+
+    <h2>How figures are chosen</h2>
+    <ul>
+      <li>Every figure links to a primary source: a peer-reviewed paper, a PubMed record or a regulator document. Figures from secondary websites are not used.</li>
+      <li>The headline MARD (mean absolute relative difference) for each device is from the manufacturer's pivotal or regulatory study in adults, unless stated. Other studies are listed in the device's evidence panel.</li>
+      <li>Studies are labelled by who paid for them: manufacturer, independent, competitor-funded, mixed, or not stated.</li>
+      <li>"—" means no primary source was found. It never means zero.</li>
+    </ul>
+
+    <h2>Known limits of the current data</h2>
+    <ul>
+      <li>Seed data were entered on 17 October 2026 and are awaiting two-person verification against full-text sources.</li>
+      <li>No published accuracy figure was found for Dexcom ONE+, Medtronic Guardian 4, Medtrum TouchCare Nano or Abbott Lingo.</li>
+      <li>Some FDA summaries report MARD for 70–180 mg/dL only. These are marked with an asterisk.</li>
+      <li>A study-quality score (0–5, based on CLSI POCT05, IFCC and eCGM criteria) is planned and not yet shown.</li>
+    </ul>
+
+    <h2>Conflicts of interest and funding</h2>
+    <p>The dataset has no industry sponsorship. Curators declare conflicts here.</p>
+
+    <h2>Corrections and right of reply</h2>
+    <p>Manufacturers and readers can request a correction by opening an issue on the <a href="https://github.com/drwilliamyu/cgm-atlas/issues" rel="noopener">GitHub repository</a>. Every change to the data is public in the repository history.</p>
+
+    <h2>Main references</h2>
+    <ul>
+      <li><a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-862/subpart-B/section-862.1355" rel="noopener">FDA iCGM special controls, 21 CFR 862.1355</a></li>
+      <li><a href="https://doi.org/10.1111/dom.16153" rel="noopener">Mathieu et al. 2024, eCGM minimum expectations</a></li>
+      <li><a href="https://boris-portal.unibe.ch/entities/publication/dd9cab02-4c0d-4cb3-b030-6908de602883" rel="noopener">IFCC WG-CGM proposed guideline</a></li>
+      <li><a href="https://doi.org/10.1111/dom.14962" rel="noopener">Pemberton et al. 2023, CE marking vs FDA and TGA</a></li>
+      <li><a href="https://ora.ox.ac.uk/objects/uuid:f09b0bd6-a256-4c21-a3ee-d491abbf1d37" rel="noopener">International clinical opinion on transparency (2026)</a></li>
+    </ul>
+  </main>
+
+  <footer class="footer">
+    <a href="./">Back to the comparison</a>
+  </footer>
+</body>
+</html>

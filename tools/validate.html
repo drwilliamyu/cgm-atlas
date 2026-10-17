@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Data check · CGM Atlas</title>
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    main { max-width: 48rem; }
+    .ok { color: var(--good); font-weight: 700; }
+    .err { color: var(--red); }
+    .warn { color: var(--amber); }
+    li { margin: .3rem 0; font-size: .9rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Data check</h1>
+    <p>Checks every JSON file in <code>data/</code> and <code>i18n/</code>. Fix all errors before merging.</p>
+    <div id="out">Running…</div>
+  </main>
+  <script type="module">
+    const out = document.getElementById('out');
+    const errors = [], warnings = [];
+    const get = async (p) => { const r = await fetch('../' + p); if (!r.ok) throw new Error(p + ': ' + r.status); return r.json(); };
+    const isUrl = (u) => { try { return ['http:', 'https:'].includes(new URL(u).protocol); } catch { return false; } };
+
+    try {
+      const [makers, devices, jurs, approvals, studies, arms, features, standards, changelog] = await Promise.all(
+        ['manufacturers', 'devices', 'jurisdictions', 'approvals', 'studies', 'study_arms', 'features', 'standards', 'changelog'].map(f => get(`data/${f}.json`)));
+      const ids = (arr, name) => {
+        const s = new Set();
+        arr.forEach(x => { if (s.has(x.id)) errors.push(`${name}: duplicate id ${x.id}`); s.add(x.id); });
+        return s;
+      };
+      const M = ids(makers, 'manufacturers'), D = ids(devices, 'devices'), J = ids(jurs, 'jurisdictions'), S = ids(studies, 'studies');
+
+      makers.forEach(m => { if (!isUrl(m.url)) errors.push(`manufacturer ${m.id}: bad url`); });
+      devices.forEach(d => { if (!M.has(d.manufacturer)) errors.push(`device ${d.id}: unknown manufacturer ${d.manufacturer}`); });
+      approvals.forEach((a, i) => {
+        if (!D.has(a.device)) errors.push(`approval #${i}: unknown device ${a.device}`);
+        if (!J.has(a.jurisdiction)) errors.push(`approval #${i}: unknown jurisdiction ${a.jurisdiction}`);
+        if (typeof a.verified !== 'boolean') errors.push(`approval #${i} (${a.device}/${a.jurisdiction}): "verified" must be true or false`);
+        if (a.verified && !a.reference) warnings.push(`approval ${a.device}/${a.jurisdiction}: verified but no reference number`);
+      });
+      studies.forEach(s => {
+        if (!isUrl(s.url)) errors.push(`study ${s.id}: missing or bad source url`);
+        if (!['manufacturer', 'independent', 'competitor', 'mixed', 'unknown'].includes(s.sponsor)) errors.push(`study ${s.id}: bad sponsor "${s.sponsor}"`);
+      });
+      const headlines = {};
+      arms.forEach((a, i) => {
+        if (!S.has(a.study)) errors.push(`arm #${i}: unknown study ${a.study}`);
+        if (!D.has(a.device)) errors.push(`arm #${i}: unknown device ${a.device}`);
+        if (a.mard != null && (a.mard <= 0 || a.mard > 60)) errors.push(`arm #${i}: MARD ${a.mard} out of range`);
+        if (a.p2020 != null && (a.p2020 < 0 || a.p2020 > 100)) errors.push(`arm #${i}: %20/20 ${a.p2020} out of range`);
+        if (a.headline) headlines[a.device] = (headlines[a.device] || 0) + 1;
+      });
+      Object.entries(headlines).forEach(([d, n]) => { if (n > 1) errors.push(`device ${d}: ${n} headline arms (max 1)`); });
+      devices.forEach(d => { if (!headlines[d.id]) warnings.push(`device ${d.id}: no headline accuracy figure`); });
+      devices.forEach(d => { if (!approvals.some(a => a.device === d.id)) warnings.push(`device ${d.id}: no approval record in any jurisdiction`); });
+      Object.entries(features.values || {}).forEach(([d, v]) => {
+        if (!D.has(d)) errors.push(`features: unknown device ${d}`);
+        if (!isUrl(v.source)) errors.push(`features ${d}: missing source url`);
+      });
+      standards.forEach(s => { if (!isUrl(s.url)) errors.push(`standard "${s.name}": bad url`); });
+      if (!changelog.length) warnings.push('changelog is empty');
+
+      const en = await get('i18n/en.json');
+      for (const lang of ['de', 'fr', 'es', 'zh-Hans']) {
+        const tr = await get(`i18n/${lang}.json`);
+        const miss = Object.keys(en).filter(k => !(k in tr) && !k.startsWith('gate.') && !k.startsWith('declined.') && k !== 'site.title');
+        if (miss.length) warnings.push(`i18n ${lang}: ${miss.length} keys fall back to English (${miss.join(', ')})`);
+        Object.keys(tr).forEach(k => { if (!(k in en)) errors.push(`i18n ${lang}: unknown key ${k}`); });
+      }
+    } catch (e) {
+      errors.push(String(e));
+    }
+
+    const list = (arr, cls) => '<ul>' + arr.map(x => `<li class="${cls}"></li>`).join('') + '</ul>';
+    out.replaceChildren();
+    const h = (tag, cls, text) => { const el = document.createElement(tag); if (cls) el.className = cls; el.textContent = text; return el; };
+    out.append(h('p', errors.length ? 'err' : 'ok', errors.length ? `${errors.length} error(s)` : 'No errors'));
+    const ul1 = document.createElement('ul'); errors.forEach(e => ul1.append(h('li', 'err', e))); out.append(ul1);
+    out.append(h('p', warnings.length ? 'warn' : 'ok', `${warnings.length} warning(s)`));
+    const ul2 = document.createElement('ul'); warnings.forEach(w => ul2.append(h('li', 'warn', w))); out.append(ul2);
+    document.title = (errors.length ? 'FAIL' : 'PASS') + ' · Data check';
+  </script>
+</body>
+</html>

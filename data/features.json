@@ -1,0 +1,14 @@
+{
+  "_note": "Only fields with a primary source are filled. null means not yet sourced.",
+  "fields": [
+    { "id": "wear_days", "label": "Wear (days)" },
+    { "id": "sensor_type", "label": "Sensor type" },
+    { "id": "otc", "label": "Over the counter" },
+    { "id": "aid", "label": "AID partners" }
+  ],
+  "values": {
+    "libre-plus": { "wear_days": 15, "aid": "mylife Loop; Omnipod 5 (announced)", "source": "https://breakthrought1d.org.au/news/libre-plus-cgm-subsidised/" },
+    "eversense-365": { "wear_days": 365, "source": "https://doi.org/10.1089/dia.2024.0592" },
+    "g7-15": { "wear_days": 15.5, "source": "https://pubmed.ncbi.nlm.nih.gov/40108991/" }
+  }
+}

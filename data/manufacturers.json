@@ -1,0 +1,12 @@
+[
+  { "id": "abbott", "name": "Abbott", "url": "https://www.freestyle.abbott/" },
+  { "id": "dexcom", "name": "Dexcom", "url": "https://www.dexcom.com/" },
+  { "id": "medtronic", "name": "Medtronic", "url": "https://www.medtronicdiabetes.com/" },
+  { "id": "senseonics", "name": "Senseonics", "url": "https://www.eversensecgm.com/" },
+  { "id": "roche", "name": "Roche", "url": "https://www.accu-chek.com/" },
+  { "id": "isens", "name": "i-SENS", "url": "https://www.caresensair.com/" },
+  { "id": "sinocare", "name": "Sinocare", "url": "https://www.sinocare.com/" },
+  { "id": "sibionics", "name": "SiBionics", "url": "https://www.sibionics.com/" },
+  { "id": "yuwell", "name": "Yuwell", "url": "https://www.yuwell.com/" },
+  { "id": "medtrum", "name": "Medtrum", "url": "https://www.medtrum.com/" }
+]

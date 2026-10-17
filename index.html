@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>CGM Atlas</title>
+  <meta name="description" content="Continuous glucose monitors by jurisdiction, with the evidence behind each accuracy figure. For health professionals.">
+  <meta name="theme-color" content="#0f5c63">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="topbar">
+    <div class="topbar-row">
+      <a class="brand" href="./" aria-label="CGM Atlas home">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M5 18 L11 18 L14 10 L18 23 L21 15 L27 15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/></svg>
+        <span data-i18n="site.title">CGM Atlas</span>
+      </a>
+      <div class="lang">
+        <label for="lang" class="sr-only" data-i18n="ctl.language">Language</label>
+        <select id="lang">
+          <option value="en">English</option>
+          <option value="de">Deutsch</option>
+          <option value="fr">Français</option>
+          <option value="es">Español</option>
+          <option value="zh-Hans">中文</option>
+        </select>
+      </div>
+    </div>
+    <div class="topbar-row controls">
+      <div class="field grow">
+        <label for="jur" data-i18n="ctl.jurisdiction">Jurisdiction</label>
+        <select id="jur"></select>
+      </div>
+      <fieldset class="seg" id="units-field">
+        <legend data-i18n="ctl.units">Units</legend>
+        <label><input type="radio" name="units" value="mmol/L"><span>mmol/L</span></label>
+        <label><input type="radio" name="units" value="mg/dL"><span>mg/dL</span></label>
+      </fieldset>
+    </div>
+    <p class="fresh" id="fresh" aria-live="polite"></p>
+    <p class="translated" id="translated" hidden data-i18n="translated.note"></p>
+  </header>
+
+  <div class="stale" id="stale" role="alert" hidden data-i18n="fresh.red"></div>
+
+  <main id="main" tabindex="-1" hidden>
+    <p class="tagline" data-i18n="site.tagline">Continuous glucose monitors by jurisdiction, with the evidence behind each accuracy figure.</p>
+
+    <section class="panel" id="reg-panel" aria-labelledby="reg-title"></section>
+
+    <div class="toolbar">
+      <p class="count" id="count" aria-live="polite"></p>
+      <button type="button" class="btn btn-ghost sheet-open" id="sheet-open" aria-expanded="false" aria-controls="sheet">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span data-i18n="ctl.filters">Filter &amp; sort</span>
+      </button>
+    </div>
+
+    <div class="sheet" id="sheet">
+      <div class="sheet-body">
+        <fieldset class="seg">
+          <legend data-i18n="ctl.view">View</legend>
+          <label><input type="radio" name="view" value="accuracy"><span data-i18n="ctl.view.accuracy">Accuracy</span></label>
+          <label><input type="radio" name="view" value="features"><span data-i18n="ctl.view.features">Features</span></label>
+        </fieldset>
+        <div class="field">
+          <label for="sort" data-i18n="ctl.sort">Sort by</label>
+          <select id="sort">
+            <option value="mard" data-i18n="ctl.sort.mard">MARD (lowest first)</option>
+            <option value="p2020" data-i18n="ctl.sort.p2020">%20/20 (highest first)</option>
+            <option value="name" data-i18n="ctl.sort.name">Name</option>
+          </select>
+        </div>
+        <label class="check"><input type="checkbox" id="include"><span data-i18n="ctl.include_unapproved">Include devices with no record here</span></label>
+        <button type="button" class="btn btn-primary sheet-close" id="sheet-close" data-i18n="ctl.close">Done</button>
+      </div>
+    </div>
+    <div class="scrim" id="scrim" hidden></div>
+
+    <p class="note" id="mard-note" data-i18n="mard.note"></p>
+    <p class="note" id="def-2020"></p>
+
+    <ul class="cards" id="cards"></ul>
+
+    <div class="table-wrap" id="table-wrap">
+      <table id="table">
+        <caption class="sr-only" id="table-caption"></caption>
+        <thead id="thead"></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+
+    <section class="block" aria-labelledby="h2h-title">
+      <h2 id="h2h-title" data-i18n="h2h.title">Head-to-head studies</h2>
+      <p data-i18n="h2h.intro"></p>
+      <div id="h2h"></div>
+    </section>
+
+    <section class="block" aria-labelledby="std-title">
+      <h2 id="std-title" data-i18n="standards.title">Standards and guidelines</h2>
+      <ul class="std" id="standards"></ul>
+    </section>
+  </main>
+
+  <section class="declined" id="declined" hidden aria-labelledby="declined-title">
+    <h1 id="declined-title" tabindex="-1" data-i18n="declined.title">This site is for health professionals</h1>
+    <p data-i18n="declined.body"></p>
+    <ul>
+      <li><a href="https://www.ndss.com.au/" rel="noopener">National Diabetes Services Scheme (Australia)</a></li>
+      <li><a href="https://www.diabetesaustralia.com.au/" rel="noopener">Diabetes Australia</a></li>
+      <li><a href="https://www.diabetes.org.uk/" rel="noopener">Diabetes UK</a></li>
+      <li><a href="https://diabetes.org/" rel="noopener">American Diabetes Association</a></li>
+    </ul>
+    <button type="button" class="btn btn-ghost" id="declined-back" data-i18n="declined.back">I am a health professional</button>
+  </section>
+
+  <footer class="footer">
+    <button type="button" class="linklike" id="reopen-gate" data-i18n="footer.disclaimer">Disclaimer</button>
+    <a href="about.html" data-i18n="footer.about">Method and sources</a>
+    <a href="https://github.com/drwilliamyu/cgm-atlas/tree/main/data" rel="noopener" data-i18n="footer.data">Data files</a>
+  </footer>
+
+  <dialog class="gate" id="gate" aria-labelledby="gate-title">
+    <form method="dialog" class="gate-inner" id="gate-form">
+      <h2 id="gate-title" data-i18n="gate.title">For health professionals only</h2>
+      <p data-i18n="gate.body1"></p>
+      <p data-i18n="gate.body2"></p>
+      <label class="check"><input type="checkbox" id="gate-c1"><span data-i18n="gate.check1"></span></label>
+      <label class="check"><input type="checkbox" id="gate-c2"><span><span data-i18n="gate.check2"></span> <a href="about.html#disclaimer" data-i18n="gate.terms">Read the terms</a></span></label>
+      <div class="gate-actions">
+        <button type="button" class="btn btn-primary" id="gate-enter" disabled data-i18n="gate.enter">Enter site</button>
+        <button type="button" class="btn btn-ghost" id="gate-decline" data-i18n="gate.decline">I am not a health professional</button>
+      </div>
+    </form>
+  </dialog>
+
+  <noscript><p class="noscript">This site needs JavaScript to show the comparison. The raw data are in the <a href="https://github.com/drwilliamyu/cgm-atlas/tree/main/data">data folder</a>.</p></noscript>
+</body>
+</html>

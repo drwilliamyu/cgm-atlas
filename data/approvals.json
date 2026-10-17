@@ -1,0 +1,32 @@
+[
+  { "device": "g7", "jurisdiction": "US", "route": "510(k)", "reference": "K213919", "date": "2022-12-07", "verified": true },
+  { "device": "g7-15", "jurisdiction": "US", "route": "510(k)", "reference": "K243214", "date": "2025-04-09", "verified": true },
+  { "device": "stelo", "jurisdiction": "US", "route": "510(k)", "reference": "K234070", "date": "2024-03-05", "verified": true, "reference_url": "https://fda.innolitics.com/device/K234070", "note": "Over-the-counter." },
+  { "device": "libre-3", "jurisdiction": "US", "route": "510(k)", "reference": "K233537", "date": "2024-04-23", "verified": true, "note": "Most recent clearance found; original 2022 clearance number not verified." },
+  { "device": "lingo", "jurisdiction": "US", "route": "510(k)", "reference": "K233655", "date": "2024-05-29", "verified": true, "note": "Over-the-counter, non-intensive glucose monitoring (product code SAF)." },
+  { "device": "simplera", "jurisdiction": "US", "route": "PMA supplement", "reference": "P160007/S047", "date": "2024-07-24", "verified": true, "reference_url": "https://www.accessdata.fda.gov/cdrh_docs/pdf16/P160007S047B.pdf" },
+  { "device": "guardian-4", "jurisdiction": "US", "route": "PMA supplement", "reference": "P160017/S091", "date": "2023-04-21", "verified": true },
+  { "device": "eversense-365", "jurisdiction": "US", "route": "510(k)", "reference": "K241335", "date": "2024-09-17", "verified": true },
+  { "device": "libre-plus", "jurisdiction": "US", "route": "510(k)", "verified": false, "note": "Clearance number not verified." },
+
+  { "device": "g7", "jurisdiction": "AU", "route": "ARTG", "verified": false, "subsidy": "NDSS", "note": "Listed on NDSS.", "source_url": "https://www.diabetesvic.org.au/?p=7308" },
+  { "device": "libre-plus", "jurisdiction": "AU", "route": "ARTG", "verified": false, "subsidy": "NDSS", "note": "Libre 3 Plus subsidised as a standalone sensor from 1 Oct 2026.", "source_url": "https://breakthrought1d.org.au/news/libre-plus-cgm-subsidised/" },
+  { "device": "caresens-air", "jurisdiction": "AU", "route": "ARTG", "verified": false, "subsidy": "None", "note": "Direct purchase; not on NDSS.", "source_url": "https://www.diabetesvic.org.au/?p=7308" },
+  { "device": "simplera", "jurisdiction": "AU", "route": "ARTG", "verified": false, "note": "NDSS lists MiniMed products; specific sensor not confirmed." },
+
+  { "device": "smartguide", "jurisdiction": "EU", "route": "CE (MDR)", "verified": false },
+  { "device": "ican-i3", "jurisdiction": "EU", "route": "CE (MDR)", "verified": false },
+  { "device": "sibionics-gs1", "jurisdiction": "EU", "route": "CE (MDR)", "verified": false },
+  { "device": "caresens-air", "jurisdiction": "EU", "route": "CE (MDR)", "verified": false },
+  { "device": "g7", "jurisdiction": "EU", "route": "CE (MDR)", "verified": false },
+  { "device": "libre-plus", "jurisdiction": "EU", "route": "CE (MDR)", "verified": false },
+  { "device": "simplera", "jurisdiction": "EU", "route": "CE (MDR)", "verified": false },
+
+  { "device": "g7", "jurisdiction": "UK", "route": "CE/UKCA", "verified": false },
+  { "device": "one-plus", "jurisdiction": "UK", "route": "CE/UKCA", "verified": false },
+  { "device": "libre-plus", "jurisdiction": "UK", "route": "CE/UKCA", "verified": false },
+  { "device": "yuwell-ct3", "jurisdiction": "UK", "route": "CE/UKCA", "verified": false, "note": "UK study population (Lancaster 2026)." },
+  { "device": "touchcare-nano", "jurisdiction": "UK", "route": "CE/UKCA", "verified": false, "note": "Diabetes UK (2023): approved for children without public paediatric data." },
+  { "device": "ican-i3", "jurisdiction": "UK", "route": "CE/UKCA", "verified": false },
+  { "device": "smartguide", "jurisdiction": "UK", "route": "CE/UKCA", "verified": false }
+]

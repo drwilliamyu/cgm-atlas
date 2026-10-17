@@ -1,0 +1,56 @@
+[
+  {
+    "id": "AU", "name": "Australia", "units": "mmol/L",
+    "regulator": "Therapeutic Goods Administration (TGA)", "regulator_url": "https://www.tga.gov.au/",
+    "register": "ARTG search", "register_url": "https://www.tga.gov.au/resources/artg",
+    "route": "ARTG inclusion. TGA requires device-specific clinical data.",
+    "standard": "No published CGM-specific accuracy standard.",
+    "reimbursement": "NDSS CGM access", "reimbursement_url": "https://www.ndss.com.au/products/continuous-glucose-monitoring/"
+  },
+  {
+    "id": "US", "name": "United States", "units": "mg/dL",
+    "regulator": "Food and Drug Administration (FDA)", "regulator_url": "https://www.fda.gov/",
+    "register": "Devices@FDA", "register_url": "https://www.accessdata.fda.gov/scripts/cdrh/devicesatfda/index.cfm",
+    "route": "iCGM: Class II with special controls (510(k) or De Novo). Other systems: PMA.",
+    "standard": "21 CFR 862.1355 (iCGM special controls)", "standard_url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-862/subpart-B/section-862.1355",
+    "reimbursement": "Medicare and private payers"
+  },
+  {
+    "id": "EU", "name": "European Union", "units": "mg/dL",
+    "regulator": "Notified bodies under MDR 2017/745", "regulator_url": "https://eur-lex.europa.eu/eli/reg/2017/745/oj",
+    "register": "EUDAMED", "register_url": "https://ec.europa.eu/tools/eudamed",
+    "route": "CE mark under the Medical Device Regulation.",
+    "standard": "No harmonised CGM accuracy criteria. eCGM is a proposal only.",
+    "reimbursement": "National schemes"
+  },
+  {
+    "id": "UK", "name": "United Kingdom", "units": "mmol/L",
+    "regulator": "MHRA", "regulator_url": "https://www.gov.uk/government/organisations/medicines-and-healthcare-products-regulatory-agency",
+    "register": "PARD", "register_url": "https://pard.mhra.gov.uk/",
+    "route": "CE or UKCA mark.",
+    "standard": "None. DTN-UK recommends devices meeting eCGM or FDA criteria.",
+    "reimbursement": "NHS Drug Tariff; NICE NG17, NG18, NG28", "reimbursement_url": "https://www.nice.org.uk/guidance/ng17"
+  },
+  {
+    "id": "CA", "name": "Canada", "units": "mmol/L",
+    "regulator": "Health Canada", "regulator_url": "https://www.canada.ca/en/health-canada.html",
+    "register": "MDALL", "register_url": "https://health-products.canada.ca/mdall-limh/",
+    "route": "Medical device licence.",
+    "standard": "No CGM-specific accuracy standard.",
+    "reimbursement": "Provincial plans"
+  },
+  {
+    "id": "NZ", "name": "New Zealand", "units": "mmol/L",
+    "regulator": "Medsafe", "regulator_url": "https://www.medsafe.govt.nz/",
+    "register": "WAND", "register_url": "https://www.medsafe.govt.nz/regulatory/DevicesNew/WAND.asp",
+    "route": "Notification to WAND.",
+    "standard": "No CGM-specific accuracy standard.",
+    "reimbursement": "Pharmac", "reimbursement_url": "https://pharmac.govt.nz/"
+  },
+  {
+    "id": "INT", "name": "International", "units": "mg/dL",
+    "regulator": "IFCC Working Group on CGM", "regulator_url": "https://www.ifcc.org/ifcc-scientific-division/sd-working-groups/wg-cgm/",
+    "route": "Not a regulator. Shows all devices.",
+    "standard": "Guidelines and consensus only (see Standards)."
+  }
+]
